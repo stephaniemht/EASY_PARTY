@@ -68,14 +68,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_09_163106) do
     t.index ["event_id"], name: "index_jackpots_on_event_id"
   end
 
-  create_table "lists", force: :cascade do |t|
-    t.string "item"
-    t.bigint "event_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_lists_on_event_id"
-  end
-
   create_table "monney_addeds", force: :cascade do |t|
     t.integer "number"
     t.bigint "user_id", null: false
@@ -120,7 +112,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_09_163106) do
   add_foreign_key "items", "events"
   add_foreign_key "items", "users"
   add_foreign_key "jackpots", "events"
-  add_foreign_key "lists", "events"
   add_foreign_key "monney_addeds", "jackpots"
   add_foreign_key "monney_addeds", "users"
   add_foreign_key "votes", "event_dates"
