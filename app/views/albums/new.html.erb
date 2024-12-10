@@ -1,0 +1,14 @@
+<h1>Créer un album pour <%= @event.name %></h1>
+
+<%= form_with model: [@event, @album], local: true do |form| %>
+  <div class="form-group">
+    <%= form.label :media, "Medias (URLs séparées par des virgules)" %>
+    <%= form.file_field :media, multiple: true, class: "form-control" %>
+  </div>
+
+  <div>
+    <%= form.submit "Add media", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<div><%= link_to "Back to Event", event_path(@event) %></div>

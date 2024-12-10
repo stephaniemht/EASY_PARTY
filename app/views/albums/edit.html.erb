@@ -1,0 +1,11 @@
+<h1>Ajouter des médias à l'album pour <%= @event.name %></h1>
+
+<%= form_with model: @album, url: event_album_path(@event), method: :patch, local: true do |form| %>
+  <div>
+    <%= form.label :media, "Ajouter des médias (URLs séparées par des virgules)" %>
+    <%= form.file_field :media, multiple: true, class: "form-control" %>
+  </div>
+  <div>
+    <%= form.submit "Ajouter des médias", class: "btn btn-primary" %>
+  </div>
+<% end %>
