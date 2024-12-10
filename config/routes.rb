@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  resources :events
+  resources :events do 
+    resources :jackpots, only: [:show, :new, :create]
+    resources :items, only: [:index, :new, :create]
+    resources :albums, only: [:index, :new, :create]
+  end
 
   # Defines the root path route ("/")
   # root "posts#index"
@@ -19,4 +23,5 @@ Rails.application.routes.draw do
   resources :users do
     resources :items, only: [:new, :create, :index]
   end
+
 end
