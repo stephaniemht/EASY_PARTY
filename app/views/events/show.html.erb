@@ -2,6 +2,7 @@
 <div class="container">
 <h1><%= @event.name %></h1>
   <p>Lieu : <%= @event.address %></p>
+  <p>Description : <%= @event.description %></p>
 <%=link_to 'Modifier', edit_event_path(@event), class: 'btn btn-primary'%>
 <%= link_to 'Supprimer', event_path(@event), method: :delete, data: { confirm: 'Etes vous sûr ?'}, class: 'btn btn-danger'%>
 <%= link_to 'Retour à la liste', events_path, class: 'btn btn-primary' %>
