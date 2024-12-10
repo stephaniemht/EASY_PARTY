@@ -6,5 +6,5 @@ class Event < ApplicationRecord
   has_many :jackpots
   has_many :event_dates
 
-  validates :name, :address, presence: true
+  # validates :name, :address, presence:
 end
