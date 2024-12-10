@@ -1,0 +1,17 @@
+<h1>Liste des événements</h1>
+<hr>
+<%= link_to 'Créer un nouvel événement', new_event_path, class: 'btn btn-primary' %>
+<hr>
+
+<% if @events.any? %>
+  <ul>
+    <% @events.each do |event| %>
+      <li>
+        <%= link_to event.name, event_path(event) %>
+
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Aucun événement pour le moment.</p>
+<% end %>

@@ -1,5 +1,4 @@
 class EventsController < ApplicationController
-
   def index
     @events = Event.all
   end
@@ -19,6 +18,8 @@ class EventsController < ApplicationController
     else
       render :new, status: unprocessable_entity
     end
+
+
   end
 
   def edit
@@ -32,18 +33,20 @@ class EventsController < ApplicationController
     else
       render :edit, status: unprocessable_entity
     end
+
   end
 
-  def destroy
-    @event = Event.find(params[:id])
-    @event.destroy
-    redirect_to events_path, notice: 'Evenement supprimé avec succès !'
-  end
 
-  private
+    def destroy
+      @event = Event.find(params[:id])
+      @event.destroy
+      redirect_to events_path, notice: 'Evenement supprimé avec succès !'
+    end
 
-  def event_params
-    params.require(:event).permit(:name, :address)
-  end
+    private
 
+    def event_params
+      params.require(:event).permit(:name, :address)
+    end
 end
+
