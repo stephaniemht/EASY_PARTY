@@ -18,6 +18,8 @@ class EventsController < ApplicationController
     else
       render :new, status: unprocessable_entity
     end
+
+
   end
 
   def edit
@@ -31,7 +33,9 @@ class EventsController < ApplicationController
     else
       render :edit, status: unprocessable_entity
     end
+
   end
+
 
     def destroy
       @event = Event.find(params[:id])
@@ -45,3 +49,4 @@ class EventsController < ApplicationController
       params.require(:event).permit(:name, :address)
     end
 end
+
