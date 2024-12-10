@@ -3,11 +3,11 @@ class AlbumsController < ApplicationController
   before_action :set_album
 
   def index
-    @album = @event.albums
+    @albums = @event.albums
   end
 
   def new
-    
+    @album = @event.Album.create
   end
 
   private
