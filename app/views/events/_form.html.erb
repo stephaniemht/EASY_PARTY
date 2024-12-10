@@ -1,0 +1,18 @@
+<%= form_with model: @event, local: true do |form| %>
+  <div class="form-group">
+    <%= form.label :name, "Nom de l'évenement" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <%# <div class="form-group">
+    <%= form.label :content, "Description" %>
+    <%# <%= form.text_area :content, class: "form-control" %>
+  <%# </div> %>
+
+  <div class="form-group">
+    <%= form.label :address, "Address" %>
+    <%= form.text_field :address, class: "form-control" %>
+  </div>
+
+<%= form.submit "Ajouter", class: "btn btn-primary" %>
+<% end %>
