@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :event_dates, through: :votes
   has_many :votes
   has_many :items
-  # has_one_attached :photo
+  has_one_attached :photo
 
   # validates :first_name, :last_name, :phone_number, presence: true
 end
