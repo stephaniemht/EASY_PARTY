@@ -5,4 +5,6 @@ class Event < ApplicationRecord
   has_many :items
   has_many :jackpots
   has_many :event_dates
+
+  validates :name, :address, presence: true
 end
