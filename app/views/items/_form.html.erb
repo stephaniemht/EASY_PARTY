@@ -1,0 +1,10 @@
+<%= form_with model: @item, local: true do |form| %>
+  <div class="form-group">
+    <%= form.label :content, "Item" %>
+    <%= form.text_field :content, class: "form-control" %>
+  </div>
+
+  <div>
+    <%= form.submit "Ajouter", class: "btn btn-primary" %>
+  </div>
+<% end %>
