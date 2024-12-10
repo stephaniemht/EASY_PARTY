@@ -17,12 +17,6 @@ user2 = User.create!(email: "tata@gmail.com", password: "azerty")
 user3 = User.create!(email: "tonton@gmail.com", password: "azerty")
 user4 = User.create!(email: "titi@gmail.com", password: "azerty")
 
-
-user1 = User.create!(email: "toto@gmail.com", password: "azerty")
-user2 = User.create!(email: "tata@gmail.com", password: "azerty")
-user3 = User.create!(email: "tonton@gmail.com", password: "azerty")
-user4 = User.create!(email: "titi@gmail.com", password: "azerty")
-
 event1 = Event.create!(name: "Noel des copains", address: "79 la Canebière", user_id: user1.id)
 event2 = Event.create!(name: "Galette des rois", address: "26 rue de la république", user_id: user1.id)
 event3 = Event.create!(name: "Halloween", address: "397 corniche kennedy", user_id: user2.id)
