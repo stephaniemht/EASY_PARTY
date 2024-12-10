@@ -7,5 +7,5 @@ class Event < ApplicationRecord
   has_many :event_dates
   has_on :album
 
-  validates :name, :address, presence: true
+  # validates :name, :address, presence:
 end
