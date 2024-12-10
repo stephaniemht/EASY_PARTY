@@ -12,11 +12,6 @@ EventRegisteredUser.destroy_all
 Event.destroy_all
 User.destroy_all
 
-user1 = User.create!(email: "toto@gmail.com", password: "azerty")
-user2 = User.create!(email: "tata@gmail.com", password: "azerty")
-user3 = User.create!(email: "tonton@gmail.com", password: "azerty")
-user4 = User.create!(email: "titi@gmail.com", password: "azerty")
-
 
 user1 = User.create!(email: "toto@gmail.com", password: "azerty")
 user2 = User.create!(email: "tata@gmail.com", password: "azerty")
