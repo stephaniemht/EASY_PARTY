@@ -14,9 +14,10 @@ Rails.application.routes.draw do
   resources :events do 
     resources :jackpots, only: [:show, :new, :create]
     resources :items, only: [:index, :new, :create]
-    resources :albums, only: [:index, :new, :create]
+    resources :albums, only: [:index, :new, :create, :edit, :update, :show]
   end
 
+  resources :albums, only: [:show, :edit, :update, :destroy]
   # Defines the root path route ("/")
   # root "posts#index"
 
