@@ -25,3 +25,6 @@ event4 = Event.create(name: "Surprise pour Jacques", user_id: user3.id)
 event5 = Event.create(name: "Fête de la musique", user_id: user3.id)
 
 EventRegisteredUser.create(user_id: user4.id, event_id: event1.id)
+
+puts "#{User.count} Users are created"
+puts "#{Event.count} Events are created"
