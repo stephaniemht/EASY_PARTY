@@ -16,9 +16,7 @@
 <%=link_to 'Modifier', edit_event_path(@event), class: 'btn btn-primary'%>
 <%= link_to 'Supprimer', event_path(@event), method: :delete, data: { confirm: 'Etes vous sûr ?'}, class: 'btn btn-danger'%>
 <%= link_to 'Retour à la liste', events_path, class: 'btn btn-primary' %>
-</div>
-
-
 <% if @event.jackpot %>
-  <%= link_to "tu as payé?", monney_creation_path(@event.jackpot), data: {turbo_method: :post, turbo_confirm: "??"} %>
+  <p><%= link_to "tu as payé?", monney_creation_path(@event.jackpot), data: {turbo_method: :post, turbo_confirm: "Envoie la preuve ! Mito"}, class: 'btn btn-primary',disabled %></p>
 <% end %>
+</div>
