@@ -15,4 +15,5 @@ class JackpotsController < ApplicationController
       render :new, alert: "Impossible to add jackpot"
     end
   end
+
 end
