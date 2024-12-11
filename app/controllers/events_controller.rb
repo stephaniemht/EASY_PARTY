@@ -5,15 +5,18 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    authorize @event
   end
 
   def new
     @event = Event.new
+    authorize @event
   end
 
   def create
     @event = Event.new(event_params)
     @event.user = current_user
+    authorize @event
     if @event.save
       redirect_to @event, notice: 'Evenement crée avec succès !'
     else
@@ -23,10 +26,12 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    authorize @event
   end
 
   def update
     @event = Event.find(params[:id])
+    authorize @event
     if @event.update(event_params)
       redirect_to @event, notice: 'Evenement mis à jour avec succès !'
     else
@@ -36,6 +41,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event = Event.find(params[:id])
+    authorize @event
     @event.destroy
     edirect_to events_path, notice: 'Evenement supprimé avec succès !'
   end
