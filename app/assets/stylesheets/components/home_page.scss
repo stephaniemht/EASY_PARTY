@@ -1,0 +1,41 @@
+.home {
+  background-color: rgb(247, 57, 120);
+  height: 550px;
+  background: linear-gradient(217deg, rgb(255, 153, 0), rgba(255,0,0,0) 70.71%),
+            linear-gradient(127deg, rgb(255, 0, 149), rgba(0,255,0,0) 70.71%),
+            linear-gradient(336deg, rgba(0, 183, 255, 0.8), rgba(0,0,255,0) 70.71%);
+}
+.logo-hp {
+  margin: auto;
+  margin-top: 50px;
+  padding: 50px;
+  width: 500px;
+  display: block;
+}
+
+.text {
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 30px;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.descr {
+  background: linear-gradient(to left, rgba(0, 183, 255, 0.8), rgb(255, 153, 0), rgb(255, 0, 149) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-top: 30px;
+  font-weight: bold;
+  font-size: 36px;
+}
+
+.boule {
+  width: 200px;
+}
