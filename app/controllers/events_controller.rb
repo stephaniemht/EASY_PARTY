@@ -43,7 +43,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     authorize @event
     @event.destroy
-    edirect_to events_path, notice: 'Evenement supprimé avec succès !'
+    redirect_to events_path, notice: 'Evenement supprimé avec succès !'
   end
 
     private
