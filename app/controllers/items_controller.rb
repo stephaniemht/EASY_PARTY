@@ -11,30 +11,30 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    @item = @event.items.new
+    respond_to do |format|
+      format.turbo_stream { render partial: "items/form", locals: { item: @item } }
+      format.html
+    end
+    authorize @event
   end
 
   def create
     @item = Item.new(item_params)
     @item.event = @event
     @item.user = current_user
+    authorize @event
     if @item.save
       respond_to do |format|
         format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.append("items", partial: "items/item", locals: { item: @item }),
-            turbo_stream.replace("new_item_form", partial: "items/form", locals: { event: @event })
-          ]
+          render turbo_stream: turbo_stream.update("items_frame", partial: "items/list", locals: { items: @event.items })
         end
-        format.html { redirect_to @event, notice: "Item ajouté avec succès !" }
+        format.html { redirect_to @event, notice: "Item ajouté avec succès." }
       end
     else
       respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace("new_item_form", partial: "items/form", locals: { event: @event }),
-                 status: :unprocessable_entity
-        end
-        format.html { render "events/show", status: :unprocessable_entity }
+        format.turbo_stream { render partial: "items/form", locals: { item: @item } }
+        format.html { render :new }
       end
     end
   end
