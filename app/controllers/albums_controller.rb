@@ -8,6 +8,7 @@ class AlbumsController < ApplicationController
 
   def show
     @album = Album.find(params[:id])
+    authorize @album
   end
 
   def new
@@ -16,10 +17,14 @@ class AlbumsController < ApplicationController
     else
       @album = @event.build_album
     end
+    authorize @album
   end
 
   def create
-    @album = @event.build_album(album_params)
+    @album = Album.new(album_params)
+    @event = Event.find(params[:event_id])
+    @album.event = @event
+    authorize @album
 
     if @album.save
       redirect_to @event, notice: "Album created successfully."
@@ -29,9 +34,13 @@ class AlbumsController < ApplicationController
   end
 
   def edit
+    @album = Album.find(params[:id])
+    authorize @album
   end
 
   def update
+    @album = Album.find(params[:id])
+    authorize @album
     if params[:album][:media].present?
       params[:album][:media].each do |media|
         @album.media.attach(media)
@@ -52,7 +61,7 @@ class AlbumsController < ApplicationController
   end
 
   def album_params
-    params.require(:album).permit(:media)
+    params.require(:album).permit(media: [])
   end
 
   def set_album
