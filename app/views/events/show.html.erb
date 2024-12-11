@@ -41,9 +41,11 @@
         <%= render partial: "items/list", locals: { items: @event.items } %>
       <% else %>
         <p>L'organisateur se charge des courses, bande de fainéant 🦥</p>
-        <%= link_to "Créer une liste", new_event_item_path(@event), 
-                    class: "btn btn-primary", 
-                    data: { turbo_frame: "items_frame" } %>
+        <%= turbo_frame_tag "item_form" do %>
+          <%= link_to "Créer une liste", new_event_item_path(@event), 
+                      class: "btn btn-primary", 
+                      data: { turbo_frame: "item_form" } %>
+        <% end %>
       <% end %>
     <% end %>
 </div>
