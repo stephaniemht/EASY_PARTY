@@ -20,6 +20,7 @@
 
 <%= link_to 'Retour à la liste', events_path, class: 'btn btn-primary' %>
 
+
 <% if @event.album.present? %>
   <h2>Album de l'évènement</h2>
   <%= link_to "Voir l'Album", event_album_path(@event, @event.album), class: 'btn btn-primary' %>
@@ -39,7 +40,7 @@
   </div>
 </div>
 
-
 <% if @event.jackpot %>
-  <%= link_to "tu as payé?", monney_creation_path(@event.jackpot), data: {turbo_method: :post, turbo_confirm: "??"} %>
+  <p><%= link_to "tu as payé?", monney_creation_path(@event.jackpot), data: {turbo_method: :post, turbo_confirm: "Envoie la preuve ! Mito"}, class: 'btn btn-primary',disabled %></p>
 <% end %>
+</div>
