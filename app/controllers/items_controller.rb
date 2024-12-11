@@ -43,7 +43,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @event = @item.event
     @item.destroy
-  
+
     respond_to do |format|
       format.turbo_stream do
         # Turbo Stream remove the item row

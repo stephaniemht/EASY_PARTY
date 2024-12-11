@@ -1,22 +1,22 @@
 
 <div class="container">
   
-<h1><%= @event.name %></h1>
-  <p>Lieu : <%= @event.address %></p>
-  <p>Description : <%= @event.description %></p>
-  <% if policy(@event).edit? %>
-    <%=link_to 'Modifier', edit_event_path(@event), class: 'btn btn-primary'%>
-  <% end %>
-<%= link_to 'Supprimer', event_path(@event), data: { turbo_method: :delete, turbo_confirm: 'Etes vous sûr ?'}, class: 'btn btn-danger' if policy(@event).destroy?%>
-<%= link_to 'Retour à la liste', events_path, class: 'btn btn-primary' %>
+  <h1><%= @event.name %></h1>
+    <p>Lieu : <%= @event.address %></p>
+    <p>Description : <%= @event.description %></p>
+    <% if policy(@event).edit? %>
+      <%=link_to 'Modifier', edit_event_path(@event), class: 'btn btn-primary'%>
+    <% end %>
+  <%= link_to 'Supprimer', event_path(@event), data: { turbo_method: :delete, turbo_confirm: 'Etes vous sûr ?'}, class: 'btn btn-danger' if policy(@event).destroy?%>
+  <%= link_to 'Retour à la liste', events_path, class: 'btn btn-primary' %>
 
-<% if @event.album.present? %>
-  <h2>Album de l'évènement</h2>
-  <%= link_to "Voir l'Album", event_album_path(@event, @event.album), class: 'btn btn-primary' %>
-<% else %>
-  <p>Aucun album n'a été créé pour cet évènement.</p>
-  <%= link_to "Créer un album", new_event_album_path(@event), class: 'btn btn-primary' %>
-<% end %>
+  <% if @event.album.present? %>
+    <h2>Album de l'évènement</h2>
+    <%= link_to "Voir l'Album", event_album_path(@event, @event.album), class: 'btn btn-primary' %>
+  <% else %>
+    <p>Aucun album n'a été créé pour cet évènement.</p>
+    <%= link_to "Créer un album", new_event_album_path(@event), class: 'btn btn-primary' %>
+  <% end %>
 
   <div class="container mt-5">
     <% if @event.items.present? %>

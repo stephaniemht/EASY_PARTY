@@ -5,6 +5,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    authorize @event
     @items = @event.items
   end
 
@@ -46,7 +47,7 @@ class EventsController < ApplicationController
     redirect_to events_path, notice: 'Evenement supprimé avec succès !'
   end
 
-    private
+  private
 
   def event_params
     params.require(:event).permit(:name, :address, :description)
