@@ -1,10 +1,6 @@
-<%= form_with model: @item, local: true do |form| %>
+<%= simple_form_for [@event, Item.new], remote: true, html: { id: "new_item_form", class: "d-flex" } do |form| %>
   <div class="form-group">
-    <%= form.label :content, "Item" %>
-    <%= form.text_field :content, class: "form-control" %>
+    <%= form.input :content, label: false, placeholder: "Tu amènes quoi le sang ?", wrapper_html: { class: "flex-grow-1" } %>
   </div>
-
-  <div>
-    <%= form.submit "Ajouter", class: "btn btn-primary" %>
-  </div>
+  <%= form.submit "Ajouter l'item", class: "btn btn-primary" %>
 <% end %>
