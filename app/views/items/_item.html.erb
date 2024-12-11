@@ -1,0 +1,10 @@
+<tr id="item_<%= item.id %>">
+  <td><%= item.content %></td>
+  <td><%= item.user.first_name %></td>
+  <td>
+    <%= link_to "Supprimer", event_item_path(@event, item),  
+                method: :delete,
+                data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer cet item ?" }, 
+                class: "btn btn-danger" %>
+  </td>
+</tr>

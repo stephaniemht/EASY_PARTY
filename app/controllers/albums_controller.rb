@@ -27,7 +27,7 @@ class AlbumsController < ApplicationController
     authorize @album
 
     if @album.save
-      redirect_to @event, notice: "Album created successfully."
+      redirect_to @event, notice: "Album créé avec succès."
     else
       render :new, status: :unprocessable_entity
     end

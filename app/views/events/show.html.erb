@@ -1,5 +1,6 @@
 
 <div class="container">
+  
 <h1><%= @event.name %></h1>
   <p>Lieu : <%= @event.address %></p>
   <p>Description : <%= @event.description %></p>
@@ -17,4 +18,13 @@
   <%= link_to "Créer un album", new_event_album_path(@event), class: 'btn btn-primary' %>
 <% end %>
 
+  <div class="container mt-5">
+    <% if @event.items.present? %>
+      <h2>Votre liste de courses</h2>
+      <%= render partial: "items/list", locals: { items: @event.items } %>
+    <% else %>
+      <p>L'organisateur se charge des courses, bande de fainéant 🦥</p>
+      <%= link_to "Créer une liste", new_event_item_path(@event), class: "btn btn-primary" %>
+    <% end %>
+  </div>
 </div>
