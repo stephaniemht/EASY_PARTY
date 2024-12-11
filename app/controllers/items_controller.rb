@@ -8,16 +8,19 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    authorize @item
   end
 
   def new
     @item = Item.new
+    authorize @item
   end
 
   def create
     @item = Item.new(item_params)
     @item.event = @event
     @item.user = current_user
+    authorize @item
     if @item.save
       respond_to do |format|
         format.turbo_stream do
@@ -41,6 +44,7 @@ class ItemsController < ApplicationController
 
   def destroy
     @item = Item.find(params[:id])
+    authorize @item
     @event = @item.event
     @item.destroy
 
