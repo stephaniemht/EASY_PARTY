@@ -1,6 +1,6 @@
 class Jackpot < ApplicationRecord
   belongs_to :event
-  has_many :monney_addeds
+  has_many :monney_addeds, dependent: :destroy
   validates :amount_per_person, presence: true, numericality: { greater_than: 0 }
 
   def total_invitees
