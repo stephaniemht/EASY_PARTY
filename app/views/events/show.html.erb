@@ -1,4 +1,3 @@
-
 <div class="container">
   <h1><%= @event.name %></h1>
   <p>Lieu : <%= @event.address %></p>
@@ -36,13 +35,15 @@
     <% end %>
   <% end %>
 
-  <div class="container mt-5">
-    <% if @event.items.present? %>
-      <h2>Votre liste de courses</h2>
-      <%= render partial: "items/list", locals: { items: @event.items } %>
-    <% else %>
-      <p>L'organisateur se charge des courses, bande de fainéant 🦥</p>
-      <%= link_to "Créer une liste", new_event_item_path(@event), class: "btn btn-primary" %>
+  <h2>Votre liste de courses</h2>
+    <%= turbo_frame_tag "items_frame" do %>
+      <% if @event.items.present? %>
+        <%= render partial: "items/list", locals: { items: @event.items } %>
+      <% else %>
+        <p>L'organisateur se charge des courses, bande de fainéant 🦥</p>
+        <%= link_to "Créer une liste", new_event_item_path(@event), 
+                    class: "btn btn-primary", 
+                    data: { turbo_frame: "items_frame" } %>
+      <% end %>
     <% end %>
-  </div>
 </div>
