@@ -3,7 +3,7 @@ class Event < ApplicationRecord
   has_many :event_registered_users
   has_many :users, through: :event_registered_users
   has_many :items
-  has_one :jackpot
+  has_one :jackpot, dependent: :destroy
   has_many :event_dates
   has_one :album, dependent: :destroy
 
