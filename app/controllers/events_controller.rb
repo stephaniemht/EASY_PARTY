@@ -5,15 +5,18 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @items = @event.items
   end
 
   def new
     @event = Event.new
+    authorize @event
   end
 
   def create
     @event = Event.new(event_params)
     @event.user = current_user
+    authorize @event
     if @event.save
       if @event.ask_for_participation
         Jackpot.create!(event: @event, amount_per_person: params[:event][:amount_per_person], total: 0)
@@ -26,10 +29,12 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    authorize @event
   end
 
   def update
     @event = Event.find(params[:id])
+    authorize @event
     if @event.update(event_params)
       redirect_to @event, notice: 'Evenement mis à jour avec succès !'
     else
@@ -39,6 +44,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event = Event.find(params[:id])
+    authorize @event
     @event.destroy
     redirect_to events_path, notice: 'Evenement supprimé avec succès !'
   end
