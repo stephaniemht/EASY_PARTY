@@ -100,7 +100,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_11_110941) do
   end
 
   create_table "monney_addeds", force: :cascade do |t|
-    t.integer "amount", default: 0
+    t.integer "number"
     t.bigint "user_id", null: false
     t.bigint "jackpot_id", null: false
     t.datetime "created_at", null: false
