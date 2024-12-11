@@ -15,9 +15,12 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user = current_user
     if @event.save
-      redirect_to @event, notice: 'Evenement crée avec succès !'
-    else
-      render :new, status: :unprocessable_entity
+      if @event.ask_for_participation
+        Jackpot.create!(event: @event, amount_per_person: params[:event][:amount_per_person], total: 0)
+      end
+        redirect_to @event, notice: 'Evenement crée avec succès !'
+      else
+        render :new, status: :unprocessable_entity
     end
   end
 
@@ -37,12 +40,12 @@ class EventsController < ApplicationController
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
-    edirect_to events_path, notice: 'Evenement supprimé avec succès !'
+    redirect_to events_path, notice: 'Evenement supprimé avec succès !'
   end
 
-    private
+  private
 
   def event_params
-    params.require(:event).permit(:name, :address, :description)
+    params.require(:event).permit(:name, :address, :description, :ask_for_participation)
   end
 end

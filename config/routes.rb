@@ -19,11 +19,11 @@ Rails.application.routes.draw do
     resources :albums, only: [:index, :new, :create]
   end
 
+  post "jackpots/:jackpot_id/monney_addeds", to: 'monney_addeds#create', as: :monney_creation
   # Defines the root path route ("/")
   # root "posts#index"
 
   resources :users do
     resources :items, only: [:new, :create, :index]
   end
-
 end
