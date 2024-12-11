@@ -19,6 +19,9 @@ Rails.application.routes.draw do
     resources :albums
   end
 
+
+  post "jackpots/:jackpot_id/monney_addeds", to: 'monney_addeds#create', as: :monney_creation
+
   resources :albums, only: [:show]
   resources :item, only: [:show]
 
@@ -28,5 +31,4 @@ Rails.application.routes.draw do
   resources :users do
     resources :items, only: [:new, :create, :index]
   end
-
 end
