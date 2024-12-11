@@ -1,14 +1,14 @@
 
 <div class="container">
-  
-
   <h1><%= @event.name %></h1>
-    <p>Lieu : <%= @event.address %></p>
-    <p>Description : <%= @event.description %></p>
-    <% if policy(@event).edit? %>
-      <%=link_to 'Modifier', edit_event_path(@event), class: 'btn btn-primary'%>
-    <% end %>
-  <%= link_to 'Supprimer', event_path(@event), data: { turbo_method: :delete, turbo_confirm: 'Etes vous sûr ?'}, class: 'btn btn-danger' if policy(@event).destroy?%>
+  <p>Lieu : <%= @event.address %></p>
+  <p>Description : <%= @event.description %></p>
+
+  <% if policy(@event).edit? %>
+    <%= link_to 'Modifier', edit_event_path(@event), class: 'btn btn-primary' %>
+  <% end %>
+
+  <%= link_to 'Supprimer', event_path(@event), data: { turbo_method: :delete, turbo_confirm: 'Etes vous sûr ?' }, class: 'btn btn-danger' if policy(@event).destroy? %>
   <%= link_to 'Retour à la liste', events_path, class: 'btn btn-primary' %>
 
   <% if @event.album.present? %>
@@ -20,15 +20,21 @@
   <% end %>
 
   <% if @event.jackpot %>
-  <h2>Cagnotte</h2>
-  <p><strong>Montant demandé par personne :</strong> <%= @event.jackpot.amount_per_person %> €</p>
-  <p><strong>Total attendu :</strong> <%= @event.jackpot.amount_per_person * @event.jackpot.total_invitees %> €</p>
-  <p><strong>Montant collecté :</strong> <%= @event.jackpot.total %> €</p>
+    <h2>Cagnotte</h2>
+    <p><strong>Montant demandé par personne :</strong> <%= @event.jackpot.amount_per_person %> €</p>
+    <p><strong>Total attendu :</strong> <%= @event.jackpot.amount_per_person * @event.jackpot.total_invitees %> €</p>
+    <p><strong>Montant collecté :</strong> <%= @event.jackpot.total %> €</p>
+    <p><%= link_to 'Voir les participants', event_jackpot_path(@event, @event.jackpot), class: "btn btn-primary" %></p>
 
-  <p><%= link_to 'Voir les participants',  event_jackpot_path(@event, @event.jackpot), class: "btn btn-primary" %></p>
-<% end %>
-
-
+    <% if @event.jackpot %>
+      <p>
+        <%= link_to "Tu as payé ?", monney_creation_path(@event.jackpot),
+                    data: { turbo_method: :post, turbo_confirm: "Envoie la preuve ! Mito" },
+                    class: 'btn btn-primary',
+                    disabled: true %>
+      </p>
+    <% end %>
+  <% end %>
 
   <div class="container mt-5">
     <% if @event.items.present? %>
@@ -39,9 +45,4 @@
       <%= link_to "Créer une liste", new_event_item_path(@event), class: "btn btn-primary" %>
     <% end %>
   </div>
-</div>
-
-<% if @event.jackpot %>
-  <p><%= link_to "tu as payé?", monney_creation_path(@event.jackpot), data: {turbo_method: :post, turbo_confirm: "Envoie la preuve ! Mito"}, class: 'btn btn-primary',disabled %></p>
-<% end %>
 </div>
