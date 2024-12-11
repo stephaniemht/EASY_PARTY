@@ -1,0 +1,9 @@
+<div class="container">
+  <h1> Liste de courses pour <%= @item.event.name %></h1>
+
+  <div>
+    <% @items.each do |item| %>
+      <div><strong><%= item.user.first_name %></strong> : <%= item.content %></div>
+    <% end %>
+  </div>
+</div>

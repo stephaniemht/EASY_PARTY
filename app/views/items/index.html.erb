@@ -1,8 +1,8 @@
 <h1><strong>Items List</strong></h1>
 
 <div class="container mt-5">
-  <% if @event.item.any?%>
-    <table class="table table-hover align-middle">
+  <% if @items.any?%>
+    <table class="table table-hover align-middle items" id="items">
       <thead>
         <tr>
           <th class="col">ID</th>
@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody class="table-group-divider">
-        <% @items.each do |item, index| %>
+        <% @items.each_with_index do |item, index| %>
           <tr>
             <td scope="row"><%= index + 1 %></td>
             <td><%= item.content %></td>
@@ -21,9 +21,11 @@
         <% end %>
       </tbody>
     </table>
-    <button><%= link_to new_item_path(@item) %></button>
+    <%= link_to "Ajouter un item", new_event_item_path(@event), class: "btn btn-primary" %>
   <% else %>
     <p>L'organisateur se charge des courses !!!! Remerciez-le bande de Rats 🐀</p>
   <% end %>
+
+  <%= link_to "Revenir à l'évènement", @event, class: "btn btn-primary" %>
 </div>
   
