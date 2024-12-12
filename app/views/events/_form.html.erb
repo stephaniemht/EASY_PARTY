@@ -15,6 +15,17 @@
     <%= form.text_field :address, class: "form-control" %>
   </div>
 
+
+<div>
+  <div id="dynamic-dates" data-controller="date-poll">
+    <div data-date-poll-target="dates">
+      <% form.fields_for :event_dates do |dates_form| %>
+        <div class="date-field">
+          <%= dates_form.date_field :proposed_date, class: "form-control" %>
+          <button type="button" class="btn btn-danger" data-action="click->date-poll#removeDate">Supprimer</button>
+        </div>
+      <% end %>
+
   <div>
     <h2>Choisir une date: </h2>
      <label>
@@ -34,7 +45,10 @@
         <%= form.label :event_dates, "Sélectionnez les dates sur lesquelles voter" %>
         <input type="date" name="event_dates[proposed_dates]" data-controller="datepicker" data-datepicker-target="proposed">
     </div>
+    <button type="button" class="btn btn-primary" data-action="click->date-poll#addDate">Ajouter une autre date</button>
   </div>
+</div>
+
 
 
   <div data-controller="participation">
