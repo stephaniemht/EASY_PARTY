@@ -31,7 +31,8 @@
                     data: { turbo_method: :post, turbo_confirm: "Envoie la preuve ! Mito" },
                     class: 'btn btn-primary',
                     disabled: true %>
-    </p>
+      </p>
+    <% end %>
     <% else %>
       <h2>Votre liste de courses</h2>
         <%= turbo_frame_tag "items_frame" do %>
