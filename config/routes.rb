@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   resources :events do
+
     resources :jackpots, only: [:show, :new, :create]
     resources :items, only: [:index, :new, :create, :destroy]
     resources :albums
@@ -25,6 +26,9 @@ Rails.application.routes.draw do
 
   resources :albums, only: [:show]
   resources :item, only: [:show]
+  # /votes
+  resources :votes, only: [:create]
+
 
   # Defines the root path route ("/")
   # root "posts#index"

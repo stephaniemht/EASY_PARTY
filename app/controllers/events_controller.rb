@@ -26,10 +26,17 @@ class EventsController < ApplicationController
         @event.event_dates.build(proposed_date: date)
       end
     end
+    @proposed_dates = params[:event_dates][:proposed_dates].split(",")
     authorize @event
     if @event.save
       @event.create_album
-
+      if params[:event][:date_option] == "fixed"
+        @event.date_fixed = params[:event][:date_fixed]
+      else
+        @proposed_dates.each do |proposed_date|
+          EventDate.create!(proposed_date: proposed_date, event_id: @event.id, user_id: current_user.id)
+        end
+      end
       if params[:item][:content] != ""
         Item.create!(content: params[:item][:content], user_id: current_user.id, event_id: @event.id)
       end
@@ -67,6 +74,15 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :address, :description, :date_fixed, :ask_for_participation, :album_id, )
+
+    params.require(:event).permit(
+      :name,
+      :address,
+      :description,
+      :ask_for_participation,
+      :album_id,
+      :fixed_date,
+      event_dates_attributes: [:id, :proposed_date, :_destroy]
+    )
   end
 end
