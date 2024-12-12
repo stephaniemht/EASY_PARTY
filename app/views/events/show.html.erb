@@ -20,6 +20,7 @@
 
   <% if @event.jackpot %>
     <h2>Cagnotte</h2>
+    <p>L'organisateur se charge des courses, bande de fainéant 🦥</p>
     <p><strong>Montant demandé par personne :</strong> <%= @event.jackpot.amount_per_person %> €</p>
     <p><strong>Total attendu :</strong> <%= @event.jackpot.amount_per_person * @event.jackpot.total_invitees %> €</p>
     <p><strong>Montant collecté :</strong> <%= @event.jackpot.total %> €</p>
@@ -33,19 +34,18 @@
                     disabled: true %>
       </p>
     <% end %>
-  <% end %>
-
-  <h2>Votre liste de courses</h2>
-    <%= turbo_frame_tag "items_frame" do %>
-      <% if @event.items.present? %>
-        <%= render partial: "items/list", locals: { items: @event.items } %>
-      <% else %>
-        <p>L'organisateur se charge des courses, bande de fainéant 🦥</p>
-        <%= turbo_frame_tag "item_form" do %>
-          <%= link_to "Créer une liste", new_event_item_path(@event), 
-                      class: "btn btn-primary", 
-                      data: { turbo_frame: "item_form" } %>
+    <% else %>
+      <h2>Votre liste de courses</h2>
+        <%= turbo_frame_tag "items_frame" do %>
+          <% if @event.items.present? %>
+            <%= render partial: "items/list", locals: { items: @event.items } %>
+          <% else %>
+            <%= turbo_frame_tag "item_form" do %>
+              <%= link_to "Ajouter un item", new_event_item_path(@event),
+                          class: "btn btn-primary",
+                          data: { turbo_frame: "item_form" } %>
+            <% end %>
+          <% end %>
         <% end %>
-      <% end %>
-    <% end %>
+  <% end %>
 </div>

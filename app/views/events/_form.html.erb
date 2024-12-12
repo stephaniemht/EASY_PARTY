@@ -18,7 +18,7 @@
 
   <div data-controller="participation">
     <div class="form-group">
-      <%= form.label :ask_for_participation, "Demander une participation financière ?" %>
+      <%= form.label :ask_for_participation, "Voulez-vous créer une cagnotte ?" %>
       <%= form.check_box :ask_for_participation, data: { participation_target: "checkbox", action: "change->participation#toggleAmountField" } %>
     </div>
 
@@ -26,6 +26,11 @@
     <div class="form-group" data-participation-target="amountField" style="display: none;">
       <%= form.label :amount_per_person, "Montant demandé par personne (€)" %>
       <%= form.number_field :amount_per_person, class: "form-control", min: 1, step: 0.01 %>
+    </div>
+
+    <div class="form-group" data-participation-target="listField">
+      <%= form.label :item, "Qu'apportez-vous à la soirée ?" %>
+      <input type="text" name="item[content]" value="">
     </div>
   </div>
 

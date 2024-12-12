@@ -7,6 +7,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     authorize @event
     @items = @event.items
+
   end
 
   def new
@@ -19,6 +20,9 @@ class EventsController < ApplicationController
     @event.user = current_user
     authorize @event
     if @event.save
+      if params[:item][:content] != ""
+        Item.create!(content: params[:item][:content], user_id: current_user.id, event_id: @event.id)
+      end
       if @event.ask_for_participation
         Jackpot.create!(event: @event, amount_per_person: params[:event][:amount_per_person], total: 0)
       end
