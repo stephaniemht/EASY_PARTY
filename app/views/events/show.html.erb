@@ -15,7 +15,6 @@
     <%= link_to "Voir l'Album", event_album_path(@event, @event.album), class: 'btn btn-primary' %>
   <% else %>
     <p>Aucun album n'a été créé pour cet évènement.</p>
-    <%= link_to "Créer un album", new_event_album_path(@event), class: 'btn btn-primary' %>
   <% end %>
 
   <% if @event.jackpot %>
@@ -45,6 +44,7 @@
           <%= link_to "Créer une liste", new_event_item_path(@event), 
                       class: "btn btn-primary", 
                       data: { turbo_frame: "item_form" } %>
+
         <% end %>
       <% end %>
     <% end %>
