@@ -19,8 +19,9 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
-    if params[:event][:date_option] = "fixed"
-      @event.fixed_date = params[:event][:fixed_date]
+
+    if params[:event][:date_option] == "fixed"
+      @event.date_fixed = params[:event][:date_fixed]
     else
       params[:event_dates].each do |date|
         @event.event_dates.build(proposed_date: date)
@@ -67,6 +68,14 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :address, :description, :ask_for_participation, :album_id, :proposed_date)
+    params.require(:event).permit(
+      :name,
+      :address,
+      :description,
+      :ask_for_participation,
+      :album_id,
+      :fixed_date,
+      event_dates_attributes: [:id, :proposed_date, :_destroy]
+    )
   end
 end

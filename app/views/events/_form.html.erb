@@ -15,25 +15,32 @@
     <%= form.text_field :address, class: "form-control" %>
   </div>
 
-  <div>
-    <h2>Choisir une date: </h2>
-     <label>
-      <%= form.radio_button :date_option, "fixed" %>
-      Date fixe
-    </label>
-    <%= form.date_field :fixed_date %>
+<div>
+  <h2>Choisir une date :</h2>
+  <label>
+    <%= form.radio_button :date_option, "fixed" %>
+    Date fixe
+  </label>
+  <%= form.date_field :date_fixed, class: "form-control" %>
 
-    <label>
-      <%= form.radio_button :date_option, "flexible" %>
-      Créer un sondage
-    </label>
-    <div>
+  <label>
+    <%= form.radio_button :date_option, "flexible" %>
+    Créer un sondage
+  </label>
+
+  <div id="dynamic-dates" data-controller="date-poll">
+    <div data-date-poll-target="dates">
       <% form.fields_for :event_dates do |dates_form| %>
-        <%= dates_form.date_field :proposed_date %>
-        <%= link_to "Ajouter une autre date", "#", id: "add-date" %>
+        <div class="date-field">
+          <%= dates_form.date_field :proposed_date, class: "form-control" %>
+          <button type="button" class="btn btn-danger" data-action="click->date-poll#removeDate">Supprimer</button>
+        </div>
       <% end %>
     </div>
+    <button type="button" class="btn btn-primary" data-action="click->date-poll#addDate">Ajouter une autre date</button>
   </div>
+</div>
+
 
 
   <div data-controller="participation">

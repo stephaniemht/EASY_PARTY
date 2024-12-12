@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
   resources :albums, only: [:show]
   resources :item, only: [:show]
+  resources :votes, only: [:create]
+
 
   # Defines the root path route ("/")
   # root "posts#index"
