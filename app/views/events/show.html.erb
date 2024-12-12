@@ -10,12 +10,37 @@
   <%= link_to 'Supprimer', event_path(@event), data: { turbo_method: :delete, turbo_confirm: 'Etes vous sûr ?' }, class: 'btn btn-danger' if policy(@event).destroy? %>
   <%= link_to 'Retour à la liste', events_path, class: 'btn btn-primary' %>
 
+ 
+  <h2>Dates proposées</h2>
+  <% if @event.event_dates.any? %>
+    <ul>
+      <% @event.event_dates.each do |event_date| %>
+        <li>
+          <p><strong>Date :</strong> <%= l(event_date.proposed_date, format: :long) %></p>
+          <p><strong>Votes :</strong> <%= event_date.votes.count %></p>
+
+          <% if event_date.votes.where(user: current_user).empty? %>
+            <%= button_to "Voter pour cette date", votes_path(event_date_id: event_date.id),
+                          method: :post,
+                          class: "btn btn-primary" %>
+          <% else %>
+            <p class="text-success">Vous avez déjà voté pour cette date.</p>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>Aucune date n'a été proposée pour cet événement.</p>
+  <% end %>
+
+
   <% if @event.album.present? %>
     <h2>Album de l'évènement</h2>
     <%= link_to "Voir l'Album", event_album_path(@event, @event.album), class: 'btn btn-primary' %>
   <% else %>
     <p>Aucun album n'a été créé pour cet évènement.</p>
   <% end %>
+
 
   <% if @event.jackpot %>
     <h2>Cagnotte</h2>
@@ -33,18 +58,18 @@
                     disabled: true %>
       </p>
     <% end %>
-    <% else %>
-      <h2>Votre liste de courses</h2>
-        <%= turbo_frame_tag "items_frame" do %>
-          <% if @event.items.present? %>
-            <%= render partial: "items/list", locals: { items: @event.items } %>
-          <% else %>
-            <%= turbo_frame_tag "item_form" do %>
-              <%= link_to "Ajouter un item", new_event_item_path(@event),
-                          class: "btn btn-primary",
-                          data: { turbo_frame: "item_form" } %>
-            <% end %>
+  <% else %>
+    <h2>Votre liste de courses</h2>
+      <%= turbo_frame_tag "items_frame" do %>
+        <% if @event.items.present? %>
+          <%= render partial: "items/list", locals: { items: @event.items } %>
+        <% else %>
+          <%= turbo_frame_tag "item_form" do %>
+            <%= link_to "Ajouter un item", new_event_item_path(@event),
+                        class: "btn btn-primary",
+                        data: { turbo_frame: "item_form" } %>
           <% end %>
         <% end %>
-    <% end %>
+      <% end %>
+  <% end %>
 </div>
