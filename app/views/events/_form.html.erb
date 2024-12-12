@@ -15,26 +15,29 @@
     <%= form.text_field :address, class: "form-control" %>
   </div>
 
-  <div>
-    <h2>Choisir une date: </h2>
-     <label>
+  <div class="cdate">
+    <h2 class="text-center">Choisir une date: </h2>
+    <div class="dfixe">
+      <label>
       <%= form.radio_button :date_option, "fixed" %>
       Date fixe
-    </label>
-    <div>
-      <input type="date" name="fixed_date" data-controller="datepicker-fixed" data-datepicker-target="fixed">
+      </label>
+      <input type="date" name="fixed_date" data-controller="datepicker-fixed"     data-datepicker-target="fixed">
     </div>
 
-    <label>
-      <%= form.radio_button :date_option, "flexible" %>
-      Créer un sondage
-    </label>
-
+    <div class="csondage">
+      <label>
+        <%= form.radio_button :date_option, "flexible" %>
+        Créer un sondage
+      </label>
     <div>
-        <%= form.label :event_dates, "Sélectionnez les dates sur lesquelles voter" %>
+
+    </div>
+        <%= form.label :event_dates, "Sélectionnez les dates" %>
         <input type="date" name="event_dates[proposed_dates]" data-controller="datepicker" data-datepicker-target="proposed">
     </div>
-  </div>
+    </div>
+
 
 
   <div data-controller="participation">
@@ -55,6 +58,8 @@
     </div>
   </div>
 
-
+  <div class="btn-cetr">
   <%= form.submit "Créer l'événement", class: "btn btn-primary" %>
+  <%= link_to 'Retour aux évènements', events_path, class: 'btn btn-primary' %>
+  </div>
 <% end %>
