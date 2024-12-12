@@ -19,6 +19,13 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
+    if params[:event][:date_option] = "fixed"
+      @event.date_fixed = params[:event][:date_fixed]
+    else
+      params[:event_dates].each do |date|
+        @event.event_dates.build(proposed_date: date)
+      end
+    end
     @proposed_dates = params[:event_dates][:proposed_dates].split(",")
     authorize @event
     if @event.save
@@ -67,6 +74,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
+
     params.require(:event).permit(
       :name,
       :address,
