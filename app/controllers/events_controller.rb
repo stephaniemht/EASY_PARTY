@@ -19,18 +19,17 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
-
-    if params[:event][:date_option] == "fixed"
-      @event.date_fixed = params[:event][:date_fixed]
-    else
-      params[:event_dates].each do |date|
-        @event.event_dates.build(proposed_date: date)
-      end
-    end
+    @proposed_dates = params[:event_dates][:proposed_dates].split(",")
     authorize @event
     if @event.save
       @event.create_album
-
+      if params[:event][:date_option] == "fixed"
+        @event.date_fixed = params[:event][:date_fixed]
+      else
+        @proposed_dates.each do |proposed_date|
+          EventDate.create!(proposed_date: proposed_date, event_id: @event.id, user_id: current_user.id)
+        end
+      end
       if params[:item][:content] != ""
         Item.create!(content: params[:item][:content], user_id: current_user.id, event_id: @event.id)
       end

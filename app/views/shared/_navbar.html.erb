@@ -1,7 +1,7 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
     <%= link_to "#" do %>
-      <%= image_tag "logo.png",  class: "custom-navbar-logo" %>
+      <%= image_tag "logo.png", class: "custom-navbar-logo" %>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,8 +28,8 @@
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to new_user_session_path, class: "nav-link" do %>
-              <%= image_tag "login.png" %>
+            <%= link_to new_user_session_path do %>
+              <%= image_tag "login.png", class: "custom-navbar-login" %>
             <% end %>
 
           </li>
