@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :jackpots, only: [:show, :new, :create]
     resources :items, only: [:index, :new, :create, :destroy]
     resources :albums
+    resources :event_dates, only: [:index, :new, :create]
   end
 
 

@@ -1,6 +1,5 @@
 class EventDatesController < ApplicationController
   before_action :set_event, only: [:index, :new, :create]
-  before_action :set_event_date, only: [:show, :edit, :update, :destroy]
 
   def index
     @event_dates = @event.event_dates

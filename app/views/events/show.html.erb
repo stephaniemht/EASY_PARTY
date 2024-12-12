@@ -3,6 +3,17 @@
   <p>Lieu : <%= @event.address %></p>
   <p>Description : <%= @event.description %></p>
 
+  <% if @event.event_dates == "fixed" %>
+    <p>Date : <%= @event.date_fixed %></p>
+  <% else %>
+    <p>Voter pour la date qui vous convient </p>
+    <ul>
+      <% @event.event_dates.each do |date| %>
+        <li><%= date.proposed_date %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <% if policy(@event).edit? %>
     <%= link_to 'Modifier', edit_event_path(@event), class: 'btn btn-primary' %>
   <% end %>

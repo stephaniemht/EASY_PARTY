@@ -15,26 +15,39 @@
     <%= form.text_field :address, class: "form-control" %>
   </div>
 
-  <div>
-    <h2>Choisir une date: </h2>
-     <label>
-      <%= form.radio_button :date_option, "fixed" %>
-      Date fixe
-    </label>
-    <%= form.date_field :fixed_date %>
-
-    <label>
-      <%= form.radio_button :date_option, "flexible" %>
-      Créer un sondage
-    </label>
-    <div>
-      <% form.fields_for :event_dates do |dates_form| %>
-        <%= dates_form.date_field :proposed_date %>
-        <%= link_to "Ajouter une autre date", "#", id: "add-date" %>
-      <% end %>
+  
+  <h2>Ajouter des dates </h2>
+  <div data-controller="dates" >
+    <div class="form-group">
+      <%= form.label :date_fixed, "Choix des dates :" %>
     </div>
-  </div>
+      
+    <div class="form-group">
+      <%= form.label :date_fixed, "Date unique" %>
+      <%= form.check_box :date_fixed, data: { dates_target: "checkboxFixed", action: "change->dates#toggleDateFields" } %>
+      
+      <%= form.label :proposed_date, "Sondage" %>
+      <%= form.check_box :proposed_date, data: { dates_target: "checkboxProposed", action: "change->dates#toggleDateFields" } %>
+    </div>
 
+    <!-- date fixe --> 
+    <div class="form-group" data-dates-target="fixedDateField" style="display: none;">
+      <%= form.label :date_fixed, "Date fixe" %>
+      <%= form.date_field :date_fixed, class: "form-control" %>
+    </div>
+
+    <!-- date sondage --> 
+    <div class="form-group" data-dates-target="proposedDateField" style="display: none;">
+      <div data-dates-target="datesList">
+        <div class="proposed-date-field">
+          <%= form.date_field :proposed_date[], class: "form-control", placeholder: "Proposez une date" %>
+          <button class="btn btn-danger" data-action="click->dates#removeDateField">Supprimer</button>
+        </div>
+      </div>
+      <button class="btn btn-primary" data-action="click->dates#addDateField">Ajouter une date</button>
+    </div>
+
+  </div> 
 
   <div data-controller="participation">
     <div class="form-group">
