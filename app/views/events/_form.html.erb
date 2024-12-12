@@ -21,17 +21,16 @@
       <%= form.radio_button :date_option, "fixed" %>
       Date fixe
     </label>
-    <%= form.date_field :fixed_date %>
+    <%= form.date_field :date_fixed %>
 
     <label>
       <%= form.radio_button :date_option, "flexible" %>
       Créer un sondage
     </label>
-    <div>
-      <% form.fields_for :event_dates do |dates_form| %>
-        <%= dates_form.date_field :proposed_date %>
-        <%= link_to "Ajouter une autre date", "#", id: "add-date" %>
-      <% end %>
+
+    <div >
+        <%= form.label :event_dates, "Sélectionnez les dates sur lesquelles voter" %>
+        <input type="date" name="event_dates[proposed_dates]" data-controller="datepicker" data-datepicker-target="input">
     </div>
   </div>
 
