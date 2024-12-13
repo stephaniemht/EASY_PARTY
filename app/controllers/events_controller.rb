@@ -19,16 +19,9 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
-    if params[:event][:date_option] = "fixed"
-      @event.date_fixed = params[:event][:date_fixed]
-    else
-      params[:event_dates].each do |date|
-        @event.event_dates.build(proposed_date: date)
-      end
-    end
     @proposed_dates = params[:event_dates][:proposed_dates].split(",")
     authorize @event
-    if @event.save
+    if @event.save!
       @event.create_album
       if params[:event][:date_option] == "fixed"
         @event.date_fixed = params[:event][:date_fixed]
@@ -43,7 +36,7 @@ class EventsController < ApplicationController
       if @event.ask_for_participation
         Jackpot.create!(event: @event, amount_per_person: params[:event][:amount_per_person], total: 0)
       end
-      redirect_to @event, notice: 'Evenement et album créés avec succès !'
+      redirect_to event_path(@event), notice: 'Evenement et album créés avec succès !'
     else
       render :new, status: :unprocessable_entity
     end
@@ -81,8 +74,7 @@ class EventsController < ApplicationController
       :description,
       :ask_for_participation,
       :album_id,
-      :fixed_date,
-      event_dates_attributes: [:id, :proposed_date, :_destroy]
+      :date_fixed
     )
   end
 end

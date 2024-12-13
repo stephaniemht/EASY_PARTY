@@ -3,7 +3,7 @@
   <p>Lieu : <%= @event.address %></p>
   <p>Description : <%= @event.description %></p>
 
-  <% if @event.event_dates == "fixed" %>
+  <% if @event.event_dates == "" %>
     <p>Date : <%= @event.date_fixed %></p>
   <% else %>
     <p>Voter pour la date qui vous convient </p>
@@ -21,7 +21,7 @@
   <%= link_to 'Supprimer', event_path(@event), data: { turbo_method: :delete, turbo_confirm: 'Etes vous sûr ?' }, class: 'btn btn-danger' if policy(@event).destroy? %>
   <%= link_to 'Retour à la liste', events_path, class: 'btn btn-primary' %>
 
- 
+
   <h2>Dates proposées</h2>
   <% if @event.event_dates.any? %>
     <ul>
