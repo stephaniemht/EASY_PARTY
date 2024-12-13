@@ -28,11 +28,15 @@
       <% @event.event_dates.each do |event_date| %>
         <li>
           <p><strong>Date :</strong> <%= l(event_date.proposed_dates, format: :long) %></p>
-          <p><strong>Votes :</strong> <%= event_date.votes.count %></p>
+      <%= turbo_stream_from "event_dates_#{event_date.id}_votes" %>
+   <div id="vote_<%= event_date.id %>">
+    <%= render "vote", event_date: event_date %>
+  </div>
+
 
           <% if event_date.votes.where(user: current_user).empty? %>
             <%= button_to "Voter pour cette date", votes_path(event_date_id: event_date.id),
-                          method: :post,
+                          turbo_method: :post,
                           class: "btn btn-primary" %>
           <% else %>
             <p class="text-success">Vous avez déjà voté pour cette date.</p>
