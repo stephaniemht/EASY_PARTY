@@ -9,7 +9,7 @@
     <p>Voter pour la date qui vous convient </p>
     <ul>
       <% @event.event_dates.each do |date| %>
-        <li><%= date.proposed_dates %></li>
+        <li><%= date.proposed_date %></li>
       <% end %>
     </ul>
   <% end %>
@@ -27,7 +27,7 @@
     <ul>
       <% @event.event_dates.each do |event_date| %>
         <li>
-          <p><strong>Date :</strong> <%= l(event_date.proposed_dates, format: :long) %></p>
+          <p><strong>Date :</strong> <%= l(event_date.proposed_date, format: :long) %></p>
       <%= turbo_stream_from "event_dates_#{event_date.id}_votes" %>
    <div id="vote_<%= event_date.id %>">
     <%= render "vote", event_date: event_date %>
