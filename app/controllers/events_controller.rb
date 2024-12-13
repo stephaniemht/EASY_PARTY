@@ -19,7 +19,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
-    @proposed_dates = params[:event_dates][:proposed_dates].split(",")
+    @proposed_dates = params[:event_dates][:proposed_date].split(",")
     authorize @event
     if @event.save!
       @event.create_album
