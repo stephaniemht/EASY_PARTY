@@ -21,21 +21,12 @@
       <label>
 
 
-<div>
-  <div id="dynamic-dates" data-controller="date-poll">
-    <div data-date-poll-target="dates">
-      <% form.fields_for :event_dates do |dates_form| %>
-        <div class="date-field">
-          <%= dates_form.date_field :proposed_date, class: "form-control" %>
-          <button type="button" class="btn btn-danger" data-action="click->date-poll#removeDate">Supprimer</button>
-        </div>
-      <% end %>
 
   <div>
       <%= form.radio_button :date_option, "fixed" %>
       Date fixe
       </label>
-      <input type="date" name="fixed_date" data-controller="datepicker-fixed"     data-datepicker-target="fixed">
+      <input type="text" name="event[date_fixed]" data-controller="datepicker-fixed" data-datepicker-target="fixed">
     </div>
 
     <div class="csondage">
@@ -47,14 +38,13 @@
 
     </div>
         <%= form.label :event_dates, "Sélectionnez les dates" %>
-        <input type="date" name="event_dates[proposed_dates]" data-controller="datepicker" data-datepicker-target="proposed">
+        <input type="text" name="event_dates[proposed_dates]" data-controller="datepicker" data-datepicker-target="proposed">
     </div>
-    <button type="button" class="btn btn-primary" data-action="click->date-poll#addDate">Ajouter une autre date</button>
+      </div>
+
+
+
   </div>
-</div>
-
-
-  </div> 
 
   <div data-controller="participation">
     <div class="form-group">
@@ -77,5 +67,6 @@
   <div class="btn-cetr">
   <%= form.submit "Créer l'événement", class: "btn btn-primary" %>
   <%= link_to 'Retour aux évènements', events_path, class: 'btn btn-primary' %>
+  </div>
   </div>
 <% end %>
