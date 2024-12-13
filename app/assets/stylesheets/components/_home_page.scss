@@ -38,3 +38,17 @@
 .boule {
   width: 200px;
 }
+
+.btnhp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.btnhp2 {
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(27, 138, 241);
+  padding: 15px 30px;
+}
