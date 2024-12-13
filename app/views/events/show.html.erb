@@ -3,13 +3,13 @@
   <p>Lieu : <%= @event.address %></p>
   <p>Description : <%= @event.description %></p>
 
-  <% if @event.event_dates == "" %>
+  <% if @event.event_dates.empty? %>
     <p>Date : <%= @event.date_fixed %></p>
   <% else %>
     <p>Voter pour la date qui vous convient </p>
     <ul>
       <% @event.event_dates.each do |date| %>
-        <li><%= date.proposed_date %></li>
+        <li><%= date.proposed_dates %></li>
       <% end %>
     </ul>
   <% end %>
@@ -27,7 +27,7 @@
     <ul>
       <% @event.event_dates.each do |event_date| %>
         <li>
-          <p><strong>Date :</strong> <%= l(event_date.proposed_date, format: :long) %></p>
+          <p><strong>Date :</strong> <%= l(event_date.proposed_dates, format: :long) %></p>
           <p><strong>Votes :</strong> <%= event_date.votes.count %></p>
 
           <% if event_date.votes.where(user: current_user).empty? %>
