@@ -27,7 +27,7 @@ class EventsController < ApplicationController
         @event.date_fixed = params[:event][:date_fixed]
       else
         @proposed_dates.each do |proposed_date|
-          EventDate.create!(proposed_date: proposed_date, event_id: @event.id, user_id: current_user.id)
+          EventDate.create!(proposed_dates: proposed_date, event_id: @event.id, user_id: current_user.id)
         end
       end
       if params[:item][:content] != ""
