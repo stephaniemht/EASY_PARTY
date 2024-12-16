@@ -17,25 +17,23 @@ class EventsController < ApplicationController
   end
 
   def create
-    puts params.inspect
     @event = Event.new(event_params)
     @event.user = current_user
     @proposed_dates = params[:event_dates][:proposed_date].split(",")
     authorize @event
     if @event.save!
       @event.create_album
-      if params[:event][:date_option] == "fixed"
-        @event.date_fixed = params[:event][:date_fixed]
+      if @proposed_dates.length <= 1
+        @event.update!(date_fixed: @proposed_dates[0])
       else
         @proposed_dates.each do |proposed_date|
           EventDate.create!(proposed_date: proposed_date, event_id: @event.id, user_id: current_user.id)
         end
       end
-      if params[:item][:content] != ""
+      if @event.ask_for_participation == 'Items'
         Item.create!(content: params[:item][:content], user_id: current_user.id, event_id: @event.id)
       end
-      if @event.ask_for_participation
-        raise
+      if @event.ask_for_participation == 'Jackpot'
         Jackpot.create!(event: @event, amount_per_person: params[:event][:amount_per_person], total: 0)
       end
       redirect_to event_path(@event), notice: 'Evenement et album créés avec succès !'
@@ -84,9 +82,9 @@ class EventsController < ApplicationController
       :name,
       :address,
       :description,
-      :event_option,
-      :item_content,
-      event_dates_attributes: [:proposed_date, :_destroy]
+      :ask_for_participation,
+      :album_id,
+      :date_fixed,
     )
   end
 end
