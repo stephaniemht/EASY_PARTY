@@ -17,6 +17,7 @@ class EventsController < ApplicationController
   end
 
   def create
+    puts params.inspect
     @event = Event.new(event_params)
     @event.user = current_user
     @proposed_dates = params[:event_dates][:proposed_date].split(",")
@@ -34,6 +35,7 @@ class EventsController < ApplicationController
         Item.create!(content: params[:item][:content], user_id: current_user.id, event_id: @event.id)
       end
       if @event.ask_for_participation
+        raise
         Jackpot.create!(event: @event, amount_per_person: params[:event][:amount_per_person], total: 0)
       end
       redirect_to event_path(@event), notice: 'Evenement et album créés avec succès !'
@@ -82,9 +84,9 @@ class EventsController < ApplicationController
       :name,
       :address,
       :description,
-      :ask_for_participation,
-      :album_id,
-      :date_fixed,
+      :event_option,
+      :item_content,
+      event_dates_attributes: [:proposed_date, :_destroy]
     )
   end
 end
