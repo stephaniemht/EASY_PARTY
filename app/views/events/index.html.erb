@@ -6,9 +6,13 @@
 <% if @events.any? %>
   <ul>
     <% @events.each do |event| %>
-      <li>
-        <%= link_to event.name, event_path(event) %>
-      </li>
+      <div class="event">
+        <h2><%= link_to event.name, event_path(event) %></h2>
+        <p>Créé par : <%= event.user.first_name %></p>
+        <% if event.event_registered_users.exists?(user: current_user) %>
+          <p>Statut d'invitation : <%= event.event_registered_users.find_by(user: current_user).status %></p>
+        <% end %>
+      </div>
     <% end %>
   </ul>
 <% else %>
