@@ -1,6 +1,7 @@
 class InvitationsController < ApplicationController
   before_action :set_event
   before_action :authorize_event, only: [:create]
+  before_action :authenticate_user!
 
   def create
     phone_number = params[:phone_number]
@@ -18,7 +19,6 @@ class InvitationsController < ApplicationController
   end
 
   private
-
 
   def set_event
     @event = Event.find(params[:event_id])
