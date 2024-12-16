@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_16_113207) do
+
+ActiveRecord::Schema[7.2].define(version: 2024_12_16_112229) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,7 +53,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_16_113207) do
   end
 
   create_table "event_dates", force: :cascade do |t|
-    t.datetime "proposed_dates"
+    t.datetime "proposed_date"
     t.bigint "event_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
@@ -80,6 +82,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_16_113207) do
     t.text "description"
     t.boolean "ask_for_participation", default: false
     t.datetime "date_fixed"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -103,7 +107,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_16_113207) do
   end
 
   create_table "monney_addeds", force: :cascade do |t|
-    t.integer "number"
+    t.integer "amount", default: 0
     t.bigint "user_id", null: false
     t.bigint "jackpot_id", null: false
     t.datetime "created_at", null: false
