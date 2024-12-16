@@ -24,6 +24,10 @@ class EventPolicy < ApplicationPolicy
     record.user == user
   end
 
+  def create_invitation?
+    true
+  end
+
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!
     # def resolve
