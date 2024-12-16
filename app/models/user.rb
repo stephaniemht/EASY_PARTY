@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_many :items
   has_one_attached :photo
+  has_many :invited_events, through: :event_registered_users, source: :event
 
   # validates :first_name, :last_name, :phone_number, presence: true
 end

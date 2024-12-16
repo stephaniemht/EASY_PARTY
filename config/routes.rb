@@ -39,6 +39,13 @@ Rails.application.routes.draw do
 
   resources :events do
     resources :invitations, only: [:new, :create]
+    resources :event_registered_users do
+      member do
+        patch :accept
+        patch :decline
+      end
+    end
+    resources :invitations, only: [:new, :create]
   end
-  
+
 end

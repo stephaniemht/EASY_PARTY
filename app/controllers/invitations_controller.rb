@@ -1,21 +1,24 @@
 class InvitationsController < ApplicationController
   before_action :set_event
-  before_action :authorize_event, only: [:create]
+  before_action :authorize_event
   before_action :authenticate_user!
 
   def create
-    phone_number = params[:phone_number]
+    phone_number = params[:phone_number] || invitation_params[:phone_number]
+    invited_user = User.find_by(phone_number: phone_number)
 
-    if valid_phone_number?(phone_number)
-      # Créez une instance de TwilioService et envoyez le message
-      twilio_service = TwilioService.new
-      twilio_service.send_sms(phone_number, "Vous êtes invité à l'événement #{@event.name}! Connectez-vous pour plus de détails : www.easy-party.store/events/#{@event.id}")
-
-      redirect_to @event, notice: 'L\'invitation a été envoyée.'
+    if invited_user
+      if @event.event_registered_users.exists?(user: invited_user)
+        flash[:alert] = "Cet utilisateur est déjà invité."
+      else
+        @event.event_registered_users.create(user: invited_user, status: "En attente")
+        send_invitation(invited_user)
+        flash[:notice] = "Invitation envoyée avec succès."
+      end
     else
-      flash[:alert] = "Numéro de téléphone invalide. Veuillez utiliser un numéro international."
-      render :new
+      flash[:alert] = "Cet utilisateur n'existe pas."
     end
+    redirect_to @event
   end
 
   private
@@ -30,5 +33,32 @@ class InvitationsController < ApplicationController
 
   def valid_phone_number?(phone_number)
     phone_number.match?(/\A\+?\d{11,15}\z/)
+  end
+
+  def send_invitation(invited_user)
+    body = "Vous êtes invité à l'événement #{@event.name}. Cliquez ici pour accepter : www.easy-party.store/events/#{@event.id}}"
+    if TwilioService.new.send_sms(invited_user.phone_number, body)
+      flash[:notice] = "Invitation envoyée avec succès."
+    else
+      flash[:alert] = "Erreur lors de l'envoi de l'invitation."
+    end
+  end
+
+  #   if registration.new_record? && registration.save
+  #     # Envoyer l'invitation via Twilio
+  #     body = "Vous êtes invité à l'événement #{@event.name}. Cliquez ici pour accepter : www.easy-party.store/events/#{@event.id}}"
+  #     if TwilioService.new.send_sms(phone_number, body)
+  #       redirect_to @event, notice: "Invitation envoyée avec succès."
+  #     else
+  #       registration.destroy
+  #       redirect_to @event, alert: "Erreur lors de l'envoi de l'invitation."
+  #     end
+  #   else
+  #     redirect_to @event, alert: "Cet utilisateur est déjà invité."
+  #   end
+  # end
+
+  def invitation_params
+    params.require(:invitation).permit(:phone_number)
   end
 end
