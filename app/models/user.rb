@@ -7,8 +7,7 @@ class User < ApplicationRecord
   has_many :event_registered_users
   has_many :monney_addeds
   has_many :events
-  has_many :event_dates
-  has_many :event_dates, through: :votes
+  has_many :event_dates, dependent: :destroy
   has_many :votes, dependent: :destroy
   has_many :items
   has_one_attached :photo
