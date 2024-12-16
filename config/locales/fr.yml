@@ -1,0 +1,6 @@
+fr:
+  event_registration:
+    status:
+      pending: "En attente"
+      accepted: "Accepté"
+      declined: "Refusé"
