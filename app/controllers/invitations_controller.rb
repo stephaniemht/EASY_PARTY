@@ -44,20 +44,6 @@ class InvitationsController < ApplicationController
     end
   end
 
-  #   if registration.new_record? && registration.save
-  #     # Envoyer l'invitation via Twilio
-  #     body = "Vous êtes invité à l'événement #{@event.name}. Cliquez ici pour accepter : www.easy-party.store/events/#{@event.id}}"
-  #     if TwilioService.new.send_sms(phone_number, body)
-  #       redirect_to @event, notice: "Invitation envoyée avec succès."
-  #     else
-  #       registration.destroy
-  #       redirect_to @event, alert: "Erreur lors de l'envoi de l'invitation."
-  #     end
-  #   else
-  #     redirect_to @event, alert: "Cet utilisateur est déjà invité."
-  #   end
-  # end
-
   def invitation_params
     params.require(:invitation).permit(:phone_number)
   end
