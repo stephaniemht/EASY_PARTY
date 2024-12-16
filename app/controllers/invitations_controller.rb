@@ -8,7 +8,7 @@ class InvitationsController < ApplicationController
     if valid_phone_number?(phone_number)
       # Créez une instance de TwilioService et envoyez le message
       twilio_service = TwilioService.new
-      twilio_service.send_sms(phone_number, "Vous êtes invité à l'événement #{@event.name}! Connectez-vous pour plus de détails : www.easyparty.store/events/#{@event.id}")
+      twilio_service.send_sms(phone_number, "Vous êtes invité à l'événement #{@event.name}! Connectez-vous pour plus de détails : www.easy-party.store/events/#{@event.id}")
 
       redirect_to @event, notice: 'L\'invitation a été envoyée.'
     else
