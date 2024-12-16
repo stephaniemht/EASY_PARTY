@@ -36,4 +36,9 @@ Rails.application.routes.draw do
   resources :users do
     resources :items, only: [:new, :create, :index]
   end
+
+  resources :events do
+    resources :invitations, only: [:new, :create]
+  end
+  
 end

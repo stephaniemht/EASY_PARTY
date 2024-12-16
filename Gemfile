@@ -45,6 +45,8 @@ gem "sassc-rails"
 gem "cloudinary"
 gem "pundit"
 gem "solid_cable"
+gem "twilio-ruby", '~> 7.4.0'
+
 
 group :development, :test do
   gem "dotenv-rails"

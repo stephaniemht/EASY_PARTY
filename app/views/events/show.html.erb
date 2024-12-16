@@ -21,7 +21,16 @@
   <%= link_to 'Supprimer', event_path(@event), data: { turbo_method: :delete, turbo_confirm: 'Etes vous sûr ?' }, class: 'btn btn-danger' if policy(@event).destroy? %>
   <%= link_to 'Retour à la liste', events_path, class: 'btn btn-primary' %>
 
-
+  <h2>Envoyer une invitation par SMS</h2>
+  <%= form_with url: event_invitations_path(@event), method: :post, local: true do |f| %>
+    <div class="form-group">
+      <%= f.label :phone_number, "Numéro de téléphone" %>
+      <%= f.telephone_field :phone_number, class: "form-control", required: true %>
+    </div>
+    <%= f.submit "Envoyer l'invitation", class: "btn btn-primary" %>
+  <% end %>
+  
+  
   <h2>Dates proposées</h2>
   <% if @event.event_dates.any? %>
     <ul>
