@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all
+    @events = Event.where(user: current_user)
+    @events += Event.joins(:event_registered_users).where(event_registered_users: { user: current_user, status: ["En attente", "Accepté"] })
   end
 
   def show
