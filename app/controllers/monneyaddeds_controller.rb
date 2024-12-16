@@ -1,2 +1,0 @@
-class MonneyaddedsController < ApplicationController
-end

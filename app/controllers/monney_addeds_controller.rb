@@ -4,6 +4,7 @@ class MonneyAddedsController < ApplicationController
     @monney_added = MonneyAdded.new(amount: @jackpot.amount_per_person)
     @monney_added.user = current_user
     @monney_added.jackpot = @jackpot
+    authorize @monney_added
     if @monney_added.save!
       @jackpot.update!(total: @jackpot.total += @monney_added.amount)
       redirect_to event_path(@jackpot.event)
