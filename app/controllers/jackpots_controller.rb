@@ -1,5 +1,4 @@
 class JackpotsController < ApplicationController
-
   def new
     @jackpot = Jackpot.new
   end
@@ -10,10 +9,9 @@ class JackpotsController < ApplicationController
     @jackpot.event = @event
     if @jackpot.save
       redirect_to event_path(@event)
-      flash[:notice] = "Jackpot is added"
+      flash[:notice] = "Cagnotte crée avec succès"
     else
-      render :new, alert: "Impossible to add jackpot"
+      render :new, alert: "Impossible d'ajouter une cagnotte"
     end
   end
-
 end

@@ -2,7 +2,7 @@ class Event < ApplicationRecord
   belongs_to :user
   has_many :event_registered_users, dependent: :destroy
   has_many :users, through: :event_registered_users
-  has_many :items
+  has_many :items, dependent: :destroy
   has_one :jackpot, dependent: :destroy
   has_many :event_dates, dependent: :destroy
   has_one :album, dependent: :destroy
