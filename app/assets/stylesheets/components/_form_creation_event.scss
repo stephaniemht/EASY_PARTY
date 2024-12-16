@@ -1,0 +1,140 @@
+// .event-form {
+//   input {
+//     max-width: 30%;
+//   }
+// }
+
+.form-new-event {
+  max-width: 80%;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.date-header {
+  font-size: 20px;
+}
+
+.event-new-wrapper {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+  }
+
+.left-side-event {
+  max-width: 50%;
+  margin-left: 8px;
+}
+
+.right-side-event {
+  max-width: 50%;
+  margin-left: 8px;
+}
+
+.basic-event-infos {
+  display: flex;
+  flex-direction: column;
+}
+
+.organization-header {
+  text-align: center;
+  font-size: 30px;
+  margin-top: 10px;
+}
+
+#form-group-item {
+  min-width: 100%;
+  background-color: grey;
+}
+
+.event_name {
+  text-align: center;
+  label {
+    padding-top: 0;
+    font-weight: bold;
+    color: black;
+    font-size: 12px !important;
+  }
+}
+
+.event_description {
+  display: block;
+  text-align: center;
+  label {
+    padding-top: 0;
+    font-weight: bold;
+    color: black;
+    font-size: 12px !important;
+  }
+}
+
+.event_address {
+  text-align: center;
+  label {
+    padding-top: 0;
+    font-weight: bold;
+    color: black;
+    font-size: 12px !important;
+  }
+}
+.category-wrapper-item {
+  background-color: grey;
+  min-width: 100%;
+  display: none;
+}
+
+.category-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.category-item {
+  flex: 0 0 30%;
+  min-width: 50%;
+}
+
+.category-selector {
+  position: absolute;
+  transform: scale(0);
+}
+
+.category-selector + label {
+  display: block;
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 12px;
+  text-align: left;
+  padding: 10px 10px 30px 10px;
+  border: 1px solid #EAEAEA;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.category-selector:checked + label {
+  color: white !important;
+}
+
+
+#event_ask_for_participation_jackpot + label {
+  color: #FD1015;
+}
+
+#event_ask_for_participation_jackpot:checked + label {
+  background-color: #FD1015;
+  border-color: #FD1015;
+}
+
+
+#event_ask_for_participation_items + label {
+  color: #FFC65A;
+}
+
+#event_ask_for_participation_items:checked + label {
+  background-color: #FFC65A;
+  border-color: #FFC65A;
+}
+
+.fa-circle-arrow-left {
+  font-size: 16px;
+  color: black;
+}

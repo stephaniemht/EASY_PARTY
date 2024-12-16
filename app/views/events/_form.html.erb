@@ -1,65 +1,82 @@
-<%= form_with model: @event, local: true do |form| %>
-  <%# Section pour les informations générales de l'événement %>
-  <div class="form-group">
-    <%= form.label :name, "Nom de l'événement" %>
-    <%= form.text_field :name, class: "form-control" %>
+ <%= link_to events_path do %>
+    <i class="fa-solid fa-circle-arrow-left"></i>
+ <% end %>
+
+
+
+  <%= simple_form_for @event, local: true do |form| %>
+<div class="event-new-wrapper">
+
+<div class="left-side-event">  <%# Section pour les informations générales de l'événement %>
+  <div class="basic-event-infos">
+    <div class="form-group">
+      <%= form.input :name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.input :address, input_html: {class: "form-control description-input"} %>
+    </div>
+
+    <div class="form-group">
+      <%= form.input :description, class: "description_input" %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= form.label :description, "Description" %>
-    <%= form.text_area :description, class: "form-control" %>
-  </div>
 
-  <div class="form-group">
-    <%= form.label :address, "Adresse" %>
-    <%= form.text_field :address, class: "form-control" %>
+  <h2 class="organization-header">Comment organisez vous votre événement ?</h2>
+
+
+  <div class="choice-jackpot-item" data-controller= "form-toggle">
+    <div class="jackpot-form">
+        <div class="form-group">
+          <%= form.input :ask_for_participation,
+                          label: "",
+                          as: :radio_buttons,
+                          collection: ['Jackpot', 'Items'],
+                          collection_wrapper_tag: 'div',
+                          collection_wrapper_class: 'category-wrapper',
+                          item_wrapper_class: 'category-item',
+                          input_html: {class: 'category-selector', data: {form_toggle_target: "choiceField", action: "change->form-toggle#toggle"}}
+                          %>
+        </div>
+
+        <%# Champs dynamiques cachés par défaut %>
+        <div data-form-toggle-target="amountField" class="d-none">
+          <div class="form-group">
+            <h1>Demande des sous</h1>
+            <input type="text" name="event[amount_per_person]" class= "form-control">
+          </div>
+        </div>
+        <div class="item-form">
+          <div class="form-group-item">
+            <div class="category-wrapper-item">
+              <input type="radio" name="event[ask_for_participation]" id="">
+            </div>
+          </div>
+        <div data-form-toggle-target="listField" class="d-none">
+          <div class="form-group" >
+           <h1>Ajoute ce que tu apportes</h1>
+            <input type="text" name="item[content]" class="form-control">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </div>
+</div>
+  <%# Section existante pour les dates %>
+  <div class="right-side-even">
 
   <div class="cdate">
-    <h2 class="text-center">Choisir une date: </h2>
-    <div class="dfixe">
-      <label>
-      <%= form.radio_button :date_option, "fixed" %>
-      Date fixe
-      </label>
-      <input type="text" name="event[date_fixed]" data-controller="datepicker-fixed"     data-datepicker-target="fixed">
-    </div>
-
-    <div class="csondage">
-      <label>
-        <%= form.radio_button :date_option, "flexible" %>
-        Créer un sondage
-      </label>
-    <div>
-
-    </div>
-        <%= form.label :event_dates, "Sélectionnez les dates" %>
-        <input type="text" name="event_dates[proposed_date]" data-controller="datepicker" data-datepicker-target="proposed">
-    </div>
-    </div>
-
-
-
-  <div data-controller="participation">
-    <div class="form-group">
-      <%= form.label :ask_for_participation, "Voulez-vous créer une cagnotte ?" %>
-      <%= form.check_box :ask_for_participation, data: { participation_target: "checkbox", action: "change->participation#toggleAmountField" } %>
-    </div>
-
-
-    <div class="form-group" data-participation-target="amountField" style="display: none;">
-      <%= form.label :amount_per_person, "Montant demandé par personne (€)" %>
-      <%= form.number_field :amount_per_person, class: "form-control", min: 1, step: 0.01 %>
-    </div>
-
-    <div class="form-group" data-participation-target="listField">
-      <%= form.label :item, "Qu'apportez-vous à la soirée ?" %>
-      <input type="text" name="item[content]" value="">
-    </div>
+    <h2 class="text-center date-header">Choisir une ou plusieurs dates</h2>
+      <input type="text" class="d-none" name="event_dates[proposed_date]" data-controller="datepicker" data-datepicker-target="proposed">
   </div>
-
+</div>
+  <%# Section pour la cagnotte et la liste %>
+</div>
+  <%# Boutons d'action %>
   <div class="btn-cetr">
-  <%= form.submit "Créer l'événement", class: "btn btn-primary" %>
-  <%= link_to 'Retour aux évènements', events_path, class: 'btn btn-primary' %>
+    <%= form.submit "Créer l'événement", class: "btn btn-primary" %>
   </div>
 <% end %>
