@@ -1,13 +1,21 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all
+    @events = Event.where(user: current_user)
+    @events += Event.joins(:event_registered_users).where(event_registered_users: { user: current_user, status: ["En attente", "Accepté"] })
   end
 
   def show
     @event = Event.find(params[:id])
     authorize @event
     @items = @event.items
-
+    @events = Event.all
+    @markers = @events.geocoded.map do |event|
+      {
+        lat: event.latitude,
+        lng: event.longitude,
+        info_window_html: render_to_string(partial: "info_windows", locals: {event: event})
+      }
+    end
   end
 
   def new

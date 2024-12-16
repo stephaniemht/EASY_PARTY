@@ -24,13 +24,26 @@
   <h2>Envoyer une invitation par SMS</h2>
   <%= form_with url: event_invitations_path(@event), method: :post, local: true do |f| %>
     <div class="form-group">
-      <%= f.label :phone_number, "Numéro de téléphone" %>
+      <%= f.label :phone_number, "Numéro de téléphone de l'invité en format international" %>
       <%= f.telephone_field :phone_number, class: "form-control", required: true %>
     </div>
     <%= f.submit "Envoyer l'invitation", class: "btn btn-primary" %>
   <% end %>
-  
-  
+
+  <h2>Invités</h2>
+  <ul>
+    <% @event.event_registered_users.where(status: ["pending", "accepted"]).each do |registration| %>
+      <li>
+        <strong><%= registration.user.first_name %></strong>
+        <% if registration.user == current_user && registration.status == "pending" %>
+          <%= button_to "Accepter", accept_event_registered_user_path(registration), method: :patch, class: "btn btn-success" %>
+          <%= button_to "Refuser", decline_event_registered_user_path(registration), method: :patch, class: "btn btn-danger" %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+
   <h2>Dates proposées</h2>
   <% if @event.event_dates.any? %>
     <ul>
@@ -96,4 +109,10 @@
         <% end %>
       <% end %>
   <% end %>
+
+  <div style="width: 100%; height: 600px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
 </div>
