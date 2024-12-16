@@ -51,6 +51,17 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     authorize @event
     if @event.update(event_params)
+      if params[:event][:ask_for_participation] == "0" && @event.jackpot
+        @event.jackpot.destroy
+      end
+      if params[:item][:content] != ""
+        Item.create!(content: params[:item][:content], user_id: current_user.id, event_id: @event.id)
+      end
+      if params[:event][:ask_for_participation] == "1" && @event.jackpot.nil?
+        Jackpot.create!(event: @event, amount_per_person: params[:event][:amount_per_person], total: 0)
+        @event.items.destroy_all
+      end
+
       redirect_to @event, notice: 'Evenement mis à jour avec succès !'
     else
       render :edit, status: :unprocessable_entity
@@ -73,7 +84,7 @@ class EventsController < ApplicationController
       :description,
       :ask_for_participation,
       :album_id,
-      :date_fixed
+      :date_fixed,
     )
   end
 end
