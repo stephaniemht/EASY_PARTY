@@ -13,7 +13,7 @@ Event.destroy_all
 User.destroy_all
 
 user1 = User.create!(email: "toto@gmail.com", password: "azerty", first_name: "Toto", last_name: "Toto", phone_number: "+33603757432")
-user2 = User.create!(email: "tata@gmail.com", password: "azerty", first_name: "Tata", last_name: "Tata", phone_number: "+33787959448")
+user2 = User.create!(email: "tata@gmail.com", password: "azerty", first_name: "Tata", last_name: "Tata", phone_number: "")
 user3 = User.create!(email: "tonton@gmail.com", password: "azerty", first_name: "Tonton", last_name: "Tonton", phone_number: "+33603757432")
 user4 = User.create!(email: "titi@gmail.com", password: "azerty", first_name: "Titi", last_name: "Titi", phone_number: "+33624963715")
 

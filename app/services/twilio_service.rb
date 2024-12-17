@@ -11,8 +11,9 @@ class TwilioService
   end
 
   def send_sms(to, body)
+    client = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
     if valid_phone_number?(to)
-      @client.messages.create(
+      client.messages.create(
         from: ENV.fetch('TWILIO_PHONE_NUMBER', nil), # Votre numéro Twilio
         to: to,
         body: body

@@ -36,7 +36,7 @@ class InvitationsController < ApplicationController
   end
 
   def send_invitation(invited_user)
-    body = "Vous êtes invité à l'événement #{@event.name}. Cliquez ici pour accepter : www.easy-party.store/events/#{@event.id}}"
+    body = "Vous êtes invité à l'événement #{@event.name}. Rendez-vous sur l'application pour voir cet évènement."
     if TwilioService.new.send_sms(invited_user.phone_number, body)
       flash[:notice] = "Invitation envoyée avec succès."
     else
