@@ -34,10 +34,10 @@
 
   <h2>Invités</h2>
   <ul>
-    <% @event.event_registered_users.where(status: ["pending", "accepted"]).each do |registration| %>
+    <% @event.event_registered_users.where(status: ["En attente", "Accepté"]).each do |registration| %>
       <li>
         <strong><%= registration.user.first_name %></strong>
-        <% if registration.user == current_user && registration.status == "pending" %>
+        <% if registration.user == current_user && registration.status == "En attente" %>
           <%= button_to "Accepter", accept_event_registered_user_path(registration), method: :patch, class: "btn btn-success" %>
           <%= button_to "Refuser", decline_event_registered_user_path(registration), method: :patch, class: "btn btn-danger" %>
         <% end %>

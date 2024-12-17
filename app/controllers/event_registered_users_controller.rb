@@ -4,7 +4,7 @@ class EventRegisteredUsersController < ApplicationController
 
   # Accepter une invitation
   def accept
-    if @event_registered_user.update(status: :accepted)
+    if @event_registered_user.update(status: 'Accepté')
       flash[:notice] = "Invitation acceptée."
     else
       flash[:alert] = "Impossible d'accepter l'invitation."
@@ -14,7 +14,7 @@ class EventRegisteredUsersController < ApplicationController
 
   # Refuser une invitation
   def decline
-    if @event_registered_user.update(status: :declined)
+    if @event_registered_user.update(status: 'Refusé')
       flash[:notice] = "Invitation refusée."
     else
       flash[:alert] = "Impossible de refuser l'invitation."
