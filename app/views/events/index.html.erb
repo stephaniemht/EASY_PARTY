@@ -1,11 +1,14 @@
-<h1 class="text-center">Liste des événements</h1>
+<div class="home2">
+  <h1>EVENEMENTS</h1>
+</div>
+
 <hr>
-<div class="d-grid gap-2 col-6 mx-auto rounded-pill" >
-  <%= link_to 'Créer un nouvel événement', new_event_path, class: "btn btn-primary" %>
+<div class="d-grid gap-2 col-4 mx-auto rounded-pill" >
+  <%= link_to 'Créer un événement', new_event_path, class: "btn btn-dark" %>
 </div>
 <hr>
 
-<h2>Evènements</h2>
+<h2 class="text-center" >🎉 Evènements à venir 🎉</h2>
 <% if @events.any? %>
   <div class="card-container" >
     <% @events.each do |event| %>
@@ -29,3 +32,6 @@
 <% else %>
   <p>Aucun événement pour le moment.</p>
 <% end %>
+
+<hr>
+<h2 class="text-center">🎉 Evènements passés 🎉</h2>
