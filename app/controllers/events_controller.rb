@@ -39,6 +39,7 @@ class EventsController < ApplicationController
         end
       end
       if @event.ask_for_participation == 'Items'
+
         Item.create!(content: params[:item][:content], user_id: current_user.id, event_id: @event.id)
       end
       if @event.ask_for_participation == 'Jackpot'
