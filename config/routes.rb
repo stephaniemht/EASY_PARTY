@@ -40,6 +40,9 @@ Rails.application.routes.draw do
   resources :events do
     resources :invitations, only: [:new, :create]
     resources :event_registered_users, only: [:accept, :decline]
+    member do
+      resources :duplicate, only: [:new, :create]
+    end
   end
 
   resources :event_registered_users do
