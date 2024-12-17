@@ -1,0 +1,74 @@
+$form-bg: white;
+$form-border-radius: 10px;
+$input-border: 1px solid gray;
+$accent-color: rgb(204, 30, 123);
+$text-color: rgb(77, 75, 75);
+$box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.75);
+
+.form {
+  background-color: $form-bg;
+  padding: 3.125em;
+  border-radius: $form-border-radius;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: $box-shadow;
+
+  &-inputs {
+    width: 100%;
+  }
+
+  &--input {
+    width: 100%;
+    margin-bottom: 1.25em;
+    height: 40px;
+    border-radius: 5px;
+    border: $input-border;
+    padding: 0.8em;
+    outline: none;
+
+    &:focus {
+      border-color: $accent-color;
+    }
+  }
+
+  &--submit {
+    width: 50%;
+    padding: 0.625em;
+    border-radius: 5px;
+    color: white;
+    background-color: $accent-color;
+    border: 1px solid $accent-color;
+    cursor: pointer;
+
+    &:hover {
+      color: $accent-color;
+      background-color: white;
+      transition: 0.5s;
+    }
+  }
+
+  .form--submit {
+    width: 100%; // Change pour prendre toute la largeur
+    max-width: 200px;
+    padding: 0.8em;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(204, 30, 123);
+    border: 1px solid rgb(170, 30, 100);
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 26px;
+
+    &:hover {
+      color: rgb(194, 86, 142);
+      background-color: white;
+      transition: 0.5s;
+    }
+  }
+}
+.container-signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
