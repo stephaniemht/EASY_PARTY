@@ -10,7 +10,7 @@ class EventPolicy < ApplicationPolicy
   end
 
   def show?
-    record.user == user || record.event_registered_users.exists?(user: user, status: [:pending, :accepted])
+    record.user == user || record.event_registered_users.exists?(user: user, status: ['En attente', 'Accepted'])
   end
 
   def create?
