@@ -14,6 +14,7 @@ class EventsController < ApplicationController
         lng: @event.longitude,
         info_window_html: render_to_string(partial: "info_windows", locals: {event: @event})
       }
+    @calendar_dates =  @event.event_dates.map {|dates| dates.proposed_date }
   end
 
   def new
