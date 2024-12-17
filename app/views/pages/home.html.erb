@@ -1,14 +1,21 @@
-<div class="home">
-<h1 class="text">Bienvenue sur</h1>
-<div>
-  <%= image_tag "bg-logo.png", class: "logo-hp" %>
-  <%= link_to  new_event_path, class: "btnhp" do %>
-  <button class="btnhp2">Créer un évènement</button>
-  <% end %>
+<div class="home3">
+  <div>
+    <h1 class="text">Easy Party:</h1>
+    <h1 class="text1">L'application qui s'implifie la vie des soirées entre amis !</h1>
+  </div>
 </div>
-</div>
+
+<div class="container">
+  <div class="row">
+    <h2 class="col-12 text-center">Créez votre évènement en un clic !</h2>
+    <%= link_to  new_event_path, class: "btnhp" do %>
+      <button class="btnhp2">Créer un évènement</button>
+    <% end %>
+  </div>
+</div> 
+
 <div class="descr">
   <img class="boule" src="https://images.emojiterra.com/google/noto-emoji/animated-emoji/1faa9.gif" alt="boule a facette">
-  <p>L'application qui simplifie la vie des soirées entre amis !</p>
+   
   <img class="boule" src="https://images.emojiterra.com/google/noto-emoji/animated-emoji/1faa9.gif" alt="boule a facette">
 </div>

@@ -1,0 +1,16 @@
+.full-width-button {
+  display: block;           /* Permet de faire en sorte que le lien prenne toute la largeur disponible */
+  width: 100%;              /* Définit la largeur du lien sur 100% */
+  padding: 10px 15px;       /* Ajoute du padding pour que le bouton ait un peu de taille */
+  text-align: center;       /* Centrer le texte à l'intérieur du bouton */
+  text-decoration: none;    /* Enlève le soulignement du lien */
+  background-color: #007bff; /* Couleur de fond du bouton */
+  color: white;             /* Couleur du texte */
+  border: none;             /* Supprime la bordure */
+  border-radius: 5px;       /* Arrondi des coins */
+  font-size: 16px;          /* Taille du texte */
+}
+
+.full-width-button:hover {
+  background-color: #0056b3; /* Change la couleur de fond au survol */
+}
