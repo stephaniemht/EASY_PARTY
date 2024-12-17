@@ -6,7 +6,7 @@
   <% if @event.event_dates.empty? %>
     <p>Date : <%= @event.date_fixed %></p>
   <% else %>
-    <p>Voter pour la date qui vous convient </p>
+    <p>Votez pour la date qui vous convient </p>
     <ul>
       <% @event.event_dates.each do |date| %>
         <li><%= date.proposed_date %></li>
@@ -112,7 +112,7 @@
 
   <div style="width: 100%; height: 600px;"
   data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-marker-value="<%= @marker.to_json %>"
   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
 </div>

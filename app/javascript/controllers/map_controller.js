@@ -5,7 +5,7 @@ import mapboxgl from 'mapbox-gl'
 export default class extends Controller {
   static values = {
     apiKey: String,
-    markers: Array
+    marker: Object
   }
 
   connect() {
@@ -21,23 +21,20 @@ export default class extends Controller {
   }
 
   #addMarkersToMap() {
-    this.markersValue.forEach((marker) => {
       const popup = new
-      mapboxgl.Popup().setHTML(marker.info_window_html)
+      mapboxgl.Popup().setHTML(this.markerValue.info_window_html)
 
       new mapboxgl.Marker({
         color: 'red'
       })
-
-        .setLngLat([ marker.lng, marker.lat ])
+        .setLngLat([ this.markerValue.lng, this.markerValue.lat ])
         .setPopup(popup)
         .addTo(this.map)
-    })
   }
 
   #fitMapToMarkers() {
     const bounds = new mapboxgl.LngLatBounds()
-    this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
+    bounds.extend([this.markerValue.lng, this.markerValue.lat ])
     this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
   }
 }
