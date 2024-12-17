@@ -7,12 +7,15 @@
 
 .home2 {
   height: 100px;
-  background: linear-gradient(217deg, rgb(255, 153, 0), rgba(255,0,0,0) 70.71%),
-            linear-gradient(127deg, rgb(255, 0, 149), rgba(0,255,0,0) 70.71%),
-            linear-gradient(336deg, rgba(0, 183, 255, 0.8), rgba(0,0,255,0) 70.71%);
+  background-image: url("https://images.pexels.com/photos/220067/pexels-photo-220067.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  background-size: cover;
+  height: 15vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
 }
 
 .home3{
