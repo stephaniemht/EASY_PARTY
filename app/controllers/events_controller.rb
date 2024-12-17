@@ -83,6 +83,21 @@ class EventsController < ApplicationController
     redirect_to events_path, notice: 'Evenement supprimé avec succès !'
   end
 
+  def duplicate
+    @event = Event.find(params[:id])
+    authorize @event
+    @new_event = @event.dup
+    @new_event.user = current_user
+    @new_event.save!
+    @event.event_dates.each do |event_date|
+      EventDate.create!(proposed_date: event_date.proposed_date, event_id: @new_event.id, user_id: current_user.id)
+    end
+    @event.items.each do |item|
+      Item.create!(content: item.content, user_id: current_user.id, event_id: @new_event.id)
+    end
+    redirect_to event_path(@new_event), notice: 'Evenement dupliqué avec succès !'
+  end
+
   private
 
   def event_params
