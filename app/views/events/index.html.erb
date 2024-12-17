@@ -1,39 +1,31 @@
-<h1>Liste des événements</h1>
+<h1 class="text-center">Liste des événements</h1>
 <hr>
-<%= link_to 'Créer un nouvel événement', new_event_path, class: 'btn btn-primary' %>
+<div class="d-grid gap-2 col-6 mx-auto rounded-pill" >
+  <%= link_to 'Créer un nouvel événement', new_event_path, class: "btn btn-primary" %>
+</div>
 <hr>
 
-<h2>Evènements à venir</h2>
+<h2>Evènements</h2>
 <% if @events.any? %>
-  <% @events.each do |event| %>
-    <div class="card-product">
-      <%# <img src="" /> %>
-      <div class="card-product-infos">
-        <h3><%= link_to event.name, event_path(event) %></h3>
-        <p>Créé par : <%= event.user.first_name %></p>
-         <% if event.event_registered_users.exists?(user: current_user) %>
-          <p>Statut d'invitation : <%= event.event_registered_users.find_by(user: current_user).status %></p>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
+  <div class="card-container" >
+    <% @events.each do |event| %>
+        <div class="card">
+          <div class="card-image">
+            <% if event.image&.attached? %>
+              <%= cl_image_tag event.imag.key, class: "card-image" %>
+            <% else %>
+                <img src="https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="avatar-par-défaut" class="card-image" >
+              </a>
+            <% end %>
+          </div>
+          <p class="card-title"><%= link_to event.name, event_path(event) %></p>
+          <p class="card-body">
+            <%= event.description %>
+          </p>
+          <p class="footer">Date de l'évènement: <span class="by-name"><%= %></span></p>
+        </div>
+    <% end %>
+  </div>
 <% else %>
   <p>Aucun événement pour le moment.</p>
 <% end %>
-
-
-<%# <h2>Evènements passés</h2>
-<% if @past_events.any? %>
-  <%# <% @past_events.each do |event| %> %>
-    <%# <div class="card-product"> %>
-      <%# <img src="" /> %>
-      <%# <div class="card-product-infos"> %>
-        <%# <h2><%= link_to event.name, event_path(event) %></h2>
-        <%# <p>Date : <%= event.date_fixed_strftime("%d%m%Y") %></p> %>
-        <%# <p>Créé par : <%= event.user.first_name %></p> %> %>
-      <%# </div> %>
-    <%# </div> %>
-  <%# <% end %> %>
-<%# <% else %> %>
-  <p>Aucun événement pour le moment.</p>
-<%# <% end %> %> %>
