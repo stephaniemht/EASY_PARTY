@@ -21,7 +21,10 @@
 
   <%= link_to 'Supprimer', event_path(@event), data: { turbo_method: :delete, turbo_confirm: 'Etes vous sûr ?' }, class: 'btn btn-danger' if policy(@event).destroy? %>
   <%= link_to 'Retour à la liste', events_path, class: 'btn btn-primary' %>
-  <%= link_to "Dupliquer l'événement", duplicate_index_path(@event), class: "btn btn-secondary", data: { confirm: "Êtes-vous sûr de vouloir dupliquer cet événement ?" } %>
+  
+  <% if policy(@event).duplicate? %>
+    <%= link_to "Dupliquer l'événement", duplicate_index_path(@event), class: "btn btn-secondary", data: { confirm: "Êtes-vous sûr de vouloir dupliquer cet événement ?" } %>
+  <% end %>
 
   <h2>Envoyer une invitation par SMS</h2>
   <%= form_with url: event_invitations_path(@event), method: :post, local: true do |f| %>

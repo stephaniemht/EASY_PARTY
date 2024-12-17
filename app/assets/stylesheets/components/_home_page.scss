@@ -4,6 +4,27 @@
             linear-gradient(127deg, rgb(255, 0, 149), rgba(0,255,0,0) 70.71%),
             linear-gradient(336deg, rgba(0, 183, 255, 0.8), rgba(0,0,255,0) 70.71%);
 }
+
+.home2 {
+  height: 100px;
+  background: linear-gradient(217deg, rgb(255, 153, 0), rgba(255,0,0,0) 70.71%),
+            linear-gradient(127deg, rgb(255, 0, 149), rgba(0,255,0,0) 70.71%),
+            linear-gradient(336deg, rgba(0, 183, 255, 0.8), rgba(0,0,255,0) 70.71%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home3{
+  background-image: url("https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  background-size: cover;
+  height: 70vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  padding-bottom: 25px;
+}
+
 .logo-hp {
   margin: auto;
   margin-top: 50px;
@@ -12,14 +33,25 @@
   display: block;
 }
 
-.text {
-  color: black;
+.container {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   padding-top: 30px;
-  font-weight: bold;
-  font-size: 50px;
+}
+
+.text {
+  color: white;
+  text-align: center;
+  padding-top: 30px;
+  font-size: 40px;
+}
+
+.text1 {
+  color: white;
+  text-align: center;
+  padding-top: 30px;
+  font-size: 32px;
 }
 
 .descr {
@@ -36,7 +68,7 @@
 }
 
 .boule {
-  width: 200px;
+  width: 100px;
 }
 
 .btnhp {
@@ -49,6 +81,7 @@
 .btnhp2 {
   border-radius: 5px;
   border: none;
-  background-color: rgb(27, 138, 241);
+  background-color: rgb(66, 63, 63);
   padding: 15px 30px;
+  color: white;
 }
