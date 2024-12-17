@@ -1,15 +1,11 @@
- <%= link_to events_path do %>
-    <i class="fa-solid fa-circle-arrow-left"></i>
- <% end %>
-
-
-
   <%= simple_form_for @event, local: true do |form| %>
 <div class="event-new-wrapper">
+
 
 <div class="left-side-event">  <%# Section pour les informations générales de l'événement %>
   <div class="basic-event-infos">
     <div class="form-group">
+    <h1 class='text-center'>Modifier l'événement</h1>
       <%= form.input :name, class: "form-control" %>
     </div>
 
@@ -32,7 +28,7 @@
           <%= form.input :ask_for_participation,
                           label: "",
                           as: :radio_buttons,
-                          collection: ['Jackpot', 'Items'],
+                          collection: ['Je crée une cagnotte', 'Mes invités apporte quelque chose'],
                           collection_wrapper_tag: 'div',
                           collection_wrapper_class: 'category-wrapper',
                           item_wrapper_class: 'category-item',
@@ -43,7 +39,7 @@
         <%# Champs dynamiques cachés par défaut %>
         <div data-form-toggle-target="amountField" class="d-none">
           <div class="form-group">
-            <h1>Demande des sous</h1>
+            <h1 class='titre-choix'>Montant par personne ? (€)</h1>
             <input type="text" name="event[amount_per_person]" class= "form-control">
           </div>
         </div>
@@ -55,7 +51,7 @@
           </div>
         <div data-form-toggle-target="listField" class="d-none">
           <div class="form-group" >
-           <h1>Ajoute ce que tu apportes</h1>
+           <h1 class='titre-choix'>Qu'est-ce que j'apporte ?</h1>
             <input type="text" name="item[content]" class="form-control">
           </div>
         </div>

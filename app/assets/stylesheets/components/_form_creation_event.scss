@@ -1,38 +1,14 @@
-// .event-form {
-//   input {
-//     max-width: 30%;
-//   }
-// }
-
+// Wrapper principal pour la page de création d'événement
 .form-new-event {
   max-width: 80%;
-  align-items: center;
+  min-width: 80%;
   margin: 0 auto;
+  align-items: center;
 }
 
+// En-têtes et marges
 .date-header {
   font-size: 20px;
-}
-
-.event-new-wrapper {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-around;
-  }
-
-.left-side-event {
-  max-width: 50%;
-  margin-left: 8px;
-}
-
-.right-side-event {
-  max-width: 50%;
-  margin-left: 8px;
-}
-
-.basic-event-infos {
-  display: flex;
-  flex-direction: column;
 }
 
 .organization-header {
@@ -41,55 +17,69 @@
   margin-top: 10px;
 }
 
-#form-group-item {
-  min-width: 100%;
-  background-color: grey;
-}
-
-.event_name {
-  text-align: center;
-  label {
-    padding-top: 0;
-    font-weight: bold;
-    color: black;
-    font-size: 12px !important;
-  }
-}
-
 .event_description {
-  display: block;
-  text-align: center;
-  label {
-    padding-top: 0;
-    font-weight: bold;
-    color: black;
-    font-size: 12px !important;
+  display: block !important;
+  padding-top: 0 !important;
+}
+
+// Conteneur principal avec deux colonnes équilibrées
+.event-new-wrapper {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  gap: 2em; // Ajoute un espace entre les deux colonnes
+}
+
+.left-side-event,
+.right-side-event {
+  width: 800px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 3em;
+}
+
+// Informations de base (formulaire)
+.basic-event-infos {
+  display: flex;
+  flex-direction: column;
+
+  .form-group {
+    margin-bottom: 1.5em;
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.8em;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+
+      &:focus {
+        border-color:  rgb(204, 30, 123);
+        box-shadow: 0 0 5px rgba(99, 99, 153, 0.3);
+        outline: none;
+      }
+    }
+
+    label {
+      font-weight: bold;
+      color: black;
+      font-size: 12px !important;
+      margin-bottom: 0.5em;
+      display: block;
+    }
   }
 }
 
-.event_address {
-  text-align: center;
-  label {
-    padding-top: 0;
-    font-weight: bold;
-    color: black;
-    font-size: 12px !important;
-  }
-}
-.category-wrapper-item {
-  background-color: grey;
-  min-width: 100%;
-  display: none;
-}
-
+// Styles pour les choix "Jackpot" et "Items"
 .category-wrapper {
   display: flex;
   justify-content: space-between;
-}
 
-.category-item {
-  flex: 0 0 30%;
-  min-width: 50%;
+  .category-item {
+    flex: 0 0 48%;
+  }
 }
 
 .category-selector {
@@ -103,38 +93,134 @@
   box-sizing: border-box;
   width: 100%;
   font-size: 12px;
-  text-align: left;
-  padding: 10px 10px 30px 10px;
-  border: 1px solid #EAEAEA;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #eaeaea;
   border-radius: 4px;
   background-color: white;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
+// Style pour les états sélectionnés
 .category-selector:checked + label {
   color: white !important;
 }
 
-
-#event_ask_for_participation_jackpot + label {
-  color: #FD1015;
+#eevent_ask_for_participation_je_crée_une_cagnotte + label {
+  color: rgb(204, 30, 123);
+  font-size: 12px;
+  font-weight: bold;
 }
 
-#event_ask_for_participation_jackpot:checked + label {
-  background-color: #FD1015;
-  border-color: #FD1015;
+#event_ask_for_participation_je_crée_une_cagnotte:checked + label {
+  background-color: rgb(204, 30, 123);
+  border-color: rgb(204, 30, 123);
+  font-size: 12px;
+  font-weight: bold;
 }
 
-
-#event_ask_for_participation_items + label {
-  color: #FFC65A;
+#event_ask_for_participation_mes_invités_apporte_quelque_chose + label {
+  color: rgb(204, 30, 123);
+  font-size: 12px;
+  font-weight: bold;
 }
 
-#event_ask_for_participation_items:checked + label {
-  background-color: #FFC65A;
-  border-color: #FFC65A;
+#event_ask_for_participation_mes_invités_apporte_quelque_chose:checked + label {
+  background-color: rgb(204, 30, 123);
+  border-color: rgb(204, 30, 123);
+  font-size: 12px;
+  font-weight: bold;
+}
+.form-check-input.is-valid ~ .form-check-label {
+  color: rgb(204, 30, 123);
+  font-size: 12px;
+  font-weight: bold;
 }
 
+// Boutons et liens
 .fa-circle-arrow-left {
-  font-size: 16px;
+  text-decoration: none;
+  font-size: 24px;
   color: black;
+  display: flex;
+  justify-content: left;
+  padding-top: 20px;
+  padding-left: 28px;
+}
+
+// Ajustement des sections dynamiques (champs conditionnels)
+#form-group-item,
+.category-wrapper-item {
+  display: none;
+  background-color: grey;
+  min-width: 100%;
+}
+
+.basic-event-infos .form-group input, .basic-event-infos .form-group textarea {
+  width: 100%;
+  padding: 0.8em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: lighter;
+}
+.organization-header {
+  text-align: center;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 37px;
+  font-weight: bold;
+}
+.text-center {
+  font-size: 26px;
+  text-align: center !important;
+  font-weight: bold;
+}
+.titre-choix {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.flatpickr-day.today {
+  border-color: rgb(204, 30, 123);
+}
+
+.flatpickr-day.selected {
+  background: rgb(204, 30, 123);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  color: #fff;
+  border-color: rgb(204, 30, 123);
+}
+
+.flatpickr-day {
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 150px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #393939;
+  cursor: pointer;
+  font-weight: 400;
+  width: 14.2857143%;
+  -webkit-flex-basis: 14.2857143%;
+  -ms-flex-preferred-size: 14.2857143%;
+  flex-basis: 14.2857143%;
+  max-width: 39px;
+  height: 39px;
+  line-height: 39px;
+  margin: 0;
+  display: inline-block;
+  position: relative;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center;
+}
+.date-header{
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
 }
