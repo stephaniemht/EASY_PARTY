@@ -9,13 +9,11 @@ class EventsController < ApplicationController
     authorize @event
     @items = @event.items
     @events = Event.all
-    @markers = @events.geocoded.map do |event|
-      {
-        lat: event.latitude,
-        lng: event.longitude,
-        info_window_html: render_to_string(partial: "info_windows", locals: {event: event})
+    @marker = {
+        lat: @event.latitude,
+        lng: @event.longitude,
+        info_window_html: render_to_string(partial: "info_windows", locals: {event: @event})
       }
-    end
   end
 
   def new
@@ -38,10 +36,10 @@ class EventsController < ApplicationController
           EventDate.create!(proposed_date: proposed_date, event_id: @event.id, user_id: current_user.id)
         end
       end
-      if @event.ask_for_participation == 'Items'
+      if params[:event][:ask_for_participation] == 'Items'
         Item.create!(content: params[:item][:content], user_id: current_user.id, event_id: @event.id)
       end
-      if @event.ask_for_participation == 'Jackpot'
+      if params[:event][:ask_for_participation] == 'Jackpot'
         Jackpot.create!(event: @event, amount_per_person: params[:event][:amount_per_person], total: 0)
       end
       redirect_to event_path(@event), notice: 'Evenement et album créés avec succès !'
@@ -59,13 +57,13 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     authorize @event
     if @event.update(event_params)
-      if params[:event][:ask_for_participation] == "0" && @event.jackpot
+      if params[:event][:ask_for_participation] == "Items" && @event.jackpot
         @event.jackpot.destroy
       end
       if params[:item][:content] != ""
         Item.create!(content: params[:item][:content], user_id: current_user.id, event_id: @event.id)
       end
-      if params[:event][:ask_for_participation] == "1" && @event.jackpot.nil?
+      if params[:event][:ask_for_participation] == "Jackpot" && @event.jackpot.nil?
         Jackpot.create!(event: @event, amount_per_person: params[:event][:amount_per_person], total: 0)
         @event.items.destroy_all
       end
@@ -92,7 +90,7 @@ class EventsController < ApplicationController
       :description,
       :ask_for_participation,
       :album_id,
-      :date_fixed,
+      :date_fixed
     )
   end
 end

@@ -17,14 +17,14 @@ Rails.application.routes.draw do
 
     resources :jackpots, only: [:show, :new, :create]
     resources :items, only: [:index, :new, :create, :destroy]
+    # events/:event_id/albums/:id
     resources :albums
     resources :event_dates, only: [:index, :new, :create]
   end
 
 
   post "jackpots/:jackpot_id/monney_addeds", to: 'monney_addeds#create', as: :monney_creation
-
-  resources :albums, only: [:show]
+ # /albums/:id
   resources :item, only: [:show]
   # /votes
   resources :votes, only: [:create]
