@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
   def index
     @events = Event.where(user: current_user)
-    @events += Event.joins(:event_registered_users).where(event_registered_users: { user: current_user, status: ["En attente", "Accepté"] })
+    @events += Event.joins(:event_registered_users).where(event_registered_users: { user: current_user,
+                                                                                    status: ["En attente", "Accepté"] })
   end
 
   def show
@@ -10,11 +11,11 @@ class EventsController < ApplicationController
     @items = @event.items
     @events = Event.all
     @marker = {
-        lat: @event.latitude,
-        lng: @event.longitude,
-        info_window_html: render_to_string(partial: "info_windows", locals: {event: @event})
-      }
-    @calendar_dates =  @event.event_dates.map {|dates| dates.proposed_date }
+      lat: @event.latitude,
+      lng: @event.longitude,
+      info_window_html: render_to_string(partial: "info_windows", locals: { event: @event })
+    }
+    @calendar_dates = @event.event_dates.map { |dates| dates.proposed_date }
   end
 
   def new
@@ -37,10 +38,11 @@ class EventsController < ApplicationController
           EventDate.create!(proposed_date: proposed_date, event_id: @event.id, user_id: current_user.id)
         end
       end
-      if params[:event][:ask_for_participation] == 'Items'
+      raise
+      if params[:event][:ask_for_participation] == 'Mes invités apportent quelque chose'
         Item.create!(content: params[:item][:content], user_id: current_user.id, event_id: @event.id)
       end
-      if params[:event][:ask_for_participation] == 'Jackpot'
+      if params[:event][:ask_for_participation] == 'Je crée une cagnotte'
         Jackpot.create!(event: @event, amount_per_person: params[:event][:amount_per_person], total: 0)
       end
       redirect_to event_path(@event), notice: 'Evenement et album créés avec succès !'
@@ -58,13 +60,13 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     authorize @event
     if @event.update(event_params)
-      if params[:event][:ask_for_participation] == "Items" && @event.jackpot
+      if params[:event][:ask_for_participation] == "Mes invités apportent quelque chose" && @event.jackpot
         @event.jackpot.destroy
       end
       if params[:item][:content] != ""
         Item.create!(content: params[:item][:content], user_id: current_user.id, event_id: @event.id)
       end
-      if params[:event][:ask_for_participation] == "Jackpot" && @event.jackpot.nil?
+      if params[:event][:ask_for_participation] == "Je crée une cagnotte" && @event.jackpot.nil?
         Jackpot.create!(event: @event, amount_per_person: params[:event][:amount_per_person], total: 0)
         @event.items.destroy_all
       end
