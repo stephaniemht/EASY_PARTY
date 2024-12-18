@@ -7,6 +7,12 @@
   display: grid;
 
 }
+.container-album {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
 .container-show {
   margin: 0;
