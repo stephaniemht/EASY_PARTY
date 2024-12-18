@@ -21,16 +21,29 @@
       <%= link_to 'Modifier', edit_event_path(@event), class: 'btn btn-primary' %>
     <% end %>
 
-    <%= link_to 'Supprimer', event_path(@event), data: { turbo_method: :delete, turbo_confirm: 'Etes vous sûr ?' }, class: 'btn btn-danger' if policy(@event).destroy? %>
-    <%= link_to 'Retour à la liste', events_path, class: 'btn btn-primary' %>
+  <%= link_to 'Supprimer', event_path(@event), data: { turbo_method: :delete, turbo_confirm: 'Etes vous sûr ?' }, class: 'btn btn-danger' if policy(@event).destroy? %>
+  <%= link_to 'Retour à la liste', events_path, class: 'btn btn-primary' %>
+  
+  <% if policy(@event).duplicate? %>
     <%= link_to "Dupliquer l'événement", duplicate_index_path(@event), class: "btn btn-secondary", data: { confirm: "Êtes-vous sûr de vouloir dupliquer cet événement ?" } %>
-  </div>
-
-
+  <% end %>
 
   <div class="item">
     <h2>Dates proposées</h2>
     <% if @event.event_dates.any? %>
+    <% @event.event_registered_users.where(status: ["En attente", "Accepté"]).each do |registration| %>
+        <strong><%= registration.user.first_name %></strong>
+          <% if registration.user.photo.attached? %>
+              <%= cl_image_tag registration.user.photo.key, class: "avatar-invité" %>
+          <% else %>
+              <img src="https://www.shutterstock.com/image-vector/default-avatar-profile-icon-vector-600nw-1725655669.jpg" alt="avatar-par-défaut" class="avatar-invité" >
+            </a>
+          <% end %>
+        <% if registration.user == current_user && registration.status == "En attente" %>
+          <%= button_to "Accepter", accept_event_registered_user_path(registration), method: :patch, class: "btn btn-success" %>
+          <%= button_to "Refuser", decline_event_registered_user_path(registration), method: :patch, class: "btn btn-danger" %>
+        <% end %>
+    <% end %>
 
       <div data-controller="calendar-show" data-calendar-show-dates-value="<%=  @calendar_dates.to_json %>">
         <% @event.event_dates.each do |event_date| %>
