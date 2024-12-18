@@ -23,7 +23,9 @@
 .card-title {
   font-size: 24px;
   font-weight: 600;
-  color: #000000;
+  color: linear-gradient(217deg, rgb(255, 153, 0), rgba(255,0,0,0) 70.71%),
+  linear-gradient(127deg, rgb(255, 0, 149), rgba(0,255,0,0) 70.71%),
+  linear-gradient(336deg, rgba(0, 183, 255, 0.8), rgba(0,0,255,0) 70.71%);
   margin: 15px 0 0 5px;
   text-decoration: none;
 }
