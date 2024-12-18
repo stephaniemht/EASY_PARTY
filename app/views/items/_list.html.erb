@@ -1,4 +1,4 @@
-<div class="container mt-5" >
+<div>
   <% if @event.items.present?%>
     <table class="table table-hover align-middle" id="items">
       <thead>
@@ -13,22 +13,30 @@
           <tr id="item_<%= item.id %>">
             <td><%= item.content %></td>
             <td><%= item.user.first_name %></td>
-            <td>
-              <%= link_to "Supprimer", event_item_path(@event, item),
-                          data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer cet item ?" },
-                          class: "btn btn-danger" if policy(item).destroy? %>
+            <td class="icon-trash">
+              <% if policy(item).destroy? %>
+              <%= link_to event_item_path(@event, item),
+                          data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer cet item ?" } do %>
+                           <i class="fa-sharp fa-solid fa-trash-can"></i>
+                <% end %>
+              <% end %>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
+  </div>
+  <div>
     <%= simple_form_for [@event, @event.items.new], remote: true, html: { class: "d-flex", data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } } do |form| %>
-      <div class="form-group">
+      <div>
         <%= form.input :content, label: false, placeholder: "Tu amènes quoi le sang ?", wrapper_html: { class: "flex-grow-1" } %>
       </div>
-      <%= form.submit "Ajouter l'item", class: "btn btn-primary" %>
-    <% end %>
+
+      <div>
+        <%= form.submit "Ajouter", class: "btn-list-course" %>
+      <% end %>
   <% else %>
-    <p>L'organisateur se charge des courses !!!! Remerciez-le bande de Rats 🐀</p>
+      <p>L'organisateur se charge des courses !!!! Remerciez-le bande de Rats 🐀</p>
   <% end %>
+      </div>
 </div>
