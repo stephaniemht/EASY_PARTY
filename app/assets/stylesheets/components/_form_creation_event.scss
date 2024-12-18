@@ -35,7 +35,7 @@
   width: 800px;
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px 10px #cc1e842b;
   padding: 3em;
 }
 
@@ -43,6 +43,7 @@
 .basic-event-infos {
   display: flex;
   flex-direction: column;
+  text-align: center;
 
   .form-group {
     margin-bottom: 1.5em;
@@ -106,7 +107,7 @@
   color: white !important;
 }
 
-#eevent_ask_for_participation_je_crée_une_cagnotte + label {
+#event_ask_for_participation_je_crée_une_cagnotte + label {
   color: rgb(204, 30, 123);
   font-size: 12px;
   font-weight: bold;
@@ -137,7 +138,7 @@
   font-weight: bold;
 }
 
-// Boutons et liens
+
 .fa-circle-arrow-left {
   text-decoration: none;
   font-size: 24px;
@@ -148,7 +149,6 @@
   padding-left: 28px;
 }
 
-// Ajustement des sections dynamiques (champs conditionnels)
 #form-group-item,
 .category-wrapper-item {
   display: none;
@@ -165,6 +165,7 @@
   font-weight: lighter;
 }
 .organization-header {
+  padding-top: 10px;
   text-align: center;
   font-size: 16px;
   margin-top: 10px;
@@ -220,7 +221,12 @@
   text-align: center;
 }
 .date-header{
+  padding-top: 10px;
   text-align: center;
   font-size: 16px;
   font-weight: bold;
+}
+.cdate {
+  box-shadow: 0 4px 10px 10px #cc1e842b;
+  border-radius: 5px;
 }
