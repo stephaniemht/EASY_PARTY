@@ -6,16 +6,6 @@
     <p>Lieu : <%= @event.address %></p>
     <p>Description : <%= @event.description %></p>
 
-    <% if @event.event_dates.empty? %>
-      <p>coucou</p>
-    <% else %>
-      <p>Votez pour la date qui vous convient </p>
-      <ul>
-        <% @event.event_dates.each do |date| %>
-          <li><%= date.proposed_date %></li>
-        <% end %>
-      </ul>
-    <% end %>
 
     <% if policy(@event).edit? %>
       <%= link_to 'Modifier', edit_event_path(@event), class: 'btn btn-primary' %>
@@ -40,10 +30,6 @@
               <img src="https://www.shutterstock.com/image-vector/default-avatar-profile-icon-vector-600nw-1725655669.jpg" alt="avatar-par-défaut" class="avatar-invité" >
             </a>
           <% end %>
-        <% if registration.user == current_user && registration.status == "En attente" %>
-          <%= button_to "Accepter", accept_event_registered_user_path(registration), method: :patch, class: "btn btn-success" %>
-          <%= button_to "Refuser", decline_event_registered_user_path(registration), method: :patch, class: "btn btn-danger" %>
-        <% end %>
     <% end %>
 
       <div data-controller="calendar-show" data-calendar-show-dates-value="<%=  @calendar_dates.to_json %>">
@@ -87,7 +73,11 @@
     <div class="avatar">
       <% @event.event_registered_users.where(status: ["En attente", "Accepté"]).each do |registration| %>
           <strong><%= registration.user.first_name %></strong>
-                  <%= cl_image_tag registration.user.photo.key, class: "avatar-invité" %>
+          <% if registration.user.photo.attached? %>
+              <%= cl_image_tag registration.user.photo.key, class: "avatar-invité" %>
+          <% else %>
+              <img src="https://www.shutterstock.com/image-vector/default-avatar-profile-icon-vector-600nw-1725655669.jpg" alt="avatar-par-défaut" class="avatar">
+          <% end %>
           <% if registration.user == current_user && registration.status == "En attente" %>
             <%= button_to "Accepter", accept_event_registered_user_path(registration), method: :patch, class: "btn btn-success" %>
             <%= button_to "Refuser", decline_event_registered_user_path(registration), method: :patch, class: "btn btn-danger" %>
