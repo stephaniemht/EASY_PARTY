@@ -5,7 +5,7 @@ import flatpickr from 'flatpickr';
 export default class extends Controller {
   static targets = ["eventDate"]
   static values = {
-    dates: Array,  // Array contenant les dates présélectionnées
+    dates: Array,
   }
 
   connect() {
