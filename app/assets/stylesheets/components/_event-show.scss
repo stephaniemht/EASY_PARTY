@@ -136,10 +136,17 @@
   transition: color 0.3s ease, transform 0.2s ease;
 }
 
-.icon-container i:hover {
+.icon-container .fa-pen-to-square:hover {
+  color: #fffb00;
+  transform: scale(1.2);
+}
+
+.icon-container .fa-trash-can:hover {
   color: #ff0000;
   transform: scale(1.2);
 }
+
+
 
 
 .item:nth-child(2), .item:nth-child(3) {
@@ -243,4 +250,3 @@ color: #f50290a4;
 //   background-color: #f1f1f1 !important;
 //   color: black !important;
 // }
-
