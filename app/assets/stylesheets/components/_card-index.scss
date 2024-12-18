@@ -23,7 +23,7 @@
 .card-title {
   font-size: 24px;
   font-weight: 600;
-  color: #000000;
+  color: rgb(42, 28, 171);
   margin: 15px 0 0 5px;
   text-decoration: none;
 }
@@ -52,4 +52,9 @@
 
 .by-name {
   font-weight: 700;
+}
+
+.container-new-header {
+  display: flex;
+  justify-content: left;
 }

@@ -1,39 +1,42 @@
 <div class="index-header">
-  <h1>EVENEMENTS</h1>
+  <h1>F I E S T A</h1>
 </div>
 
-<div class="border-top border-bottom p-4">
-  <div class="d-grid gap-2 col-4 mx-auto rounded-pill" >
-    <%= link_to 'Créer un événement', new_event_path, class: "btn btn-dark" %>
-  </div>
-</div>
+
 
 <div class="container-index">
-  <h2 class="text-center p-3" >🎉 Evènements à venir 🎉</h2>
+  <div class="border-top p-4">
+    <div class="d-grid gap-2 col-4 mx-auto rounded-pill link" >
+      <%= link_to 'Créer un évènement', new_event_path, class: "btn btn-dark" %>
+    </div>
+  </div>
+  
+  <h2 class="text-center p-3" >🎉 Soirée à venir 🎉</h2>
   <% if @events.any? %>
     <div class="card-container" >
       <% @events.each do |event| %>
+       <%= link_to event_path(event) do %>
           <div class="card">
             <div class="card-image">
               <% if event.image&.attached? %>
                 <%= cl_image_tag event.imag.key, class: "card-image" %>
               <% else %>
                   <img src="https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="avatar-par-défaut" class="card-image" >
-                </a>
               <% end %>
             </div>
-            <p class="card-title"><%= link_to event.name, event_path(event) %></p>
+            <p class="card-title"><%= event.name %></p>
             <p class="card-body">
               <%= event.description %>
             </p>
             <p class="footer">Date de l'évènement: <span class="by-name"><%= %></span></p>
           </div>
+          <% end %>
       <% end %>
     </div>
   <% else %>
     <p>Aucun événement pour le moment.</p>
   <% end %>
+
+  <h2 class="text-center boder-bottom p-4">🎉 Soirées Souvenirs 🎉</h2>
 </div>
 
-<hr>
-<h2 class="text-center">🎉 Evènements passés 🎉</h2>
