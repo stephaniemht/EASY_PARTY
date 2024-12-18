@@ -1,0 +1,42 @@
+.image-grid-container {
+  padding: 20px;
+}
+
+/* The unordered list behaves like a grid */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Individual items in the grid */
+.image-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Images inside the grid */
+.image-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Hover effect for images */
+.image-item:hover img {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.container-album-header {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
