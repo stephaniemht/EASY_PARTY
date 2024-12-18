@@ -41,15 +41,6 @@
   <div class="item">
     <h2 class="gradient-text">Dates proposées</h2>
     <% if @event.event_dates.any? %>
-    <% @event.event_registered_users.where(status: ["En attente", "Accepté"]).each do |registration| %>
-        <strong><%= registration.user.first_name %></strong>
-          <% if registration.user.photo.attached? %>
-              <%= cl_image_tag registration.user.photo.key, class: "avatar-invité" %>
-          <% else %>
-              <img src="https://www.shutterstock.com/image-vector/default-avatar-profile-icon-vector-600nw-1725655669.jpg" alt="avatar-par-défaut" class="avatar-invité" >
-            </a>
-          <% end %>
-    <% end %>
 
       <div data-controller="calendar-show" data-calendar-show-dates-value="<%=  @calendar_dates.to_json %>">
         <% @event.event_dates.each do |event_date| %>
