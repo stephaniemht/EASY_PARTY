@@ -1,11 +1,14 @@
+<div class="container-button"></div>
  <%= link_to events_path do %>
     <i class="fa-solid fa-circle-arrow-left"></i>
  <% end %>
+</div>
+
 <%= simple_form_for @event, local: true do |form| %>
 <div class="event-new-wrapper">
 
 
-<div class="left-side-event">  
+<div class="left-side-event">
   <div class="basic-event-infos">
     <div class="form-group">
     <h1 class='text-center'>Crée un nouvel événement</h1>

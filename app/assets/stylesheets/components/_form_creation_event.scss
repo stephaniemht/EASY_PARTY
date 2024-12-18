@@ -6,10 +6,6 @@
   align-items: center;
 }
 
-// En-têtes et marges
-.date-header {
-  font-size: 20px;
-}
 
 .organization-header {
   text-align: center;
@@ -28,14 +24,31 @@
   display: flex;
   justify-content: space-around;
   gap: 2em; // Ajoute un espace entre les deux colonnes
+
 }
 
 .left-side-event,
 .right-side-event {
+  background: linear-gradient(
+    217deg,
+    rgba(255, 153, 0, 0.14),
+    rgba(255, 0, 0, 0) 70.71%
+  ),
+  linear-gradient(
+    127deg,
+    rgba(255, 0, 149, 0.12),
+    rgba(0, 255, 0, 0) 70.71%
+  ),
+  linear-gradient(
+    336deg,
+    rgba(0, 183, 255, 0.45),
+    rgba(0, 0, 255, 0) 70.71%
+  );
+
   width: 800px;
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 4px 10px 10px #cc1e842b;
+  box-shadow: 0 4px 10px 10px #0c01018a;
   padding: 3em;
 }
 
@@ -157,6 +170,7 @@
 }
 
 .basic-event-infos .form-group input, .basic-event-infos .form-group textarea {
+  background-color: #0000001a;
   width: 100%;
   padding: 0.8em;
   border: 1px solid #ccc;
@@ -173,6 +187,7 @@
   font-weight: bold;
 }
 .text-center {
+  padding-bottom: 30px;
   font-size: 26px;
   text-align: center !important;
   font-weight: bold;
@@ -195,38 +210,70 @@
   border-color: rgb(204, 30, 123);
 }
 
-.flatpickr-day {
-  background: none;
-  border: 1px solid transparent;
-  border-radius: 150px;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  color: #393939;
-  cursor: pointer;
-  font-weight: 400;
-  width: 14.2857143%;
-  -webkit-flex-basis: 14.2857143%;
-  -ms-flex-preferred-size: 14.2857143%;
-  flex-basis: 14.2857143%;
-  max-width: 39px;
-  height: 39px;
-  line-height: 39px;
-  margin: 0;
-  display: inline-block;
-  position: relative;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  text-align: center;
-}
 .date-header{
-  padding-top: 10px;
+  padding: 10px;
   text-align: center;
   font-size: 16px;
   font-weight: bold;
 }
 .cdate {
-  box-shadow: 0 4px 10px 10px #cc1e842b;
-  border-radius: 5px;
+  box-shadow: 0 4px 10px 10px #0c01018a;
+  border-radius: 10px;
+}
+
+.container-new-header{
+  display: flex;
+  justify-content: left;
+}
+
+.container-global {
+  background: linear-gradient(217deg, rgb(255, 153, 0), rgba(255,0,0,0) 70.71%),
+  linear-gradient(127deg, rgb(255, 0, 149), rgba(0,255,0,0) 70.71%),
+  linear-gradient(336deg, rgba(0, 183, 255, 0.8), rgba(0,0,255,0) 70.71%);
+}
+
+.flatpickr-calendar {
+  background: linear-gradient(
+    217deg,
+    rgba(255, 153, 0, 0.5),
+    rgba(255, 0, 0, 0) 70.71%
+  ),
+  linear-gradient(
+    127deg,
+    rgba(255, 0, 149, 0.5),
+    rgba(0, 255, 0, 0) 70.71%
+  ),
+  linear-gradient(
+    336deg,
+    rgba(0, 183, 255, 0.5),
+    rgba(0, 0, 255, 0) 70.71%
+  );
+  border-radius: 8px; /* Coins arrondis pour le style */
+  padding: 10px; /* Pour éviter que les éléments internes touchent les bords */
+}
+
+.flatpickr-days {
+  background: transparent; /* Permet au fond multicolore d'être visible */
+  box-shadow: none; /* Supprime toute ombre gênante */
+}
+
+.flatpickr-month {
+  background: transparent; /* Supprime le fond blanc */
+}
+
+.flatpickr-day {
+  background: rgba(255, 255, 255, 0.2); /* Optionnel : Fond léger pour les jours */
+  color: #fff; /* Contraste avec un fond multicolore */
+  border-radius: 4px; /* Coins arrondis pour les jours */
+}
+
+.flatpickr-day:hover {
+  background: rgba(255, 255, 255, 0.5); /* Couleur au survol */
+  color: black; /* Contraste amélioré */
+}
+.flatpickr-innerContainer,
+.flatpickr-months,
+.flatpickr-days {
+  background: transparent;
+  box-shadow: none;
 }
