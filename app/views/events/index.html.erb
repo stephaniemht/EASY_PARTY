@@ -1,15 +1,17 @@
 <div class="index-header">
-  <h1>EVENEMENTS</h1>
+  <h1>F I E S T A</h1>
 </div>
 
-<div class="border-top border-bottom p-4">
-  <div class="d-grid gap-2 col-4 mx-auto rounded-pill link" >
-    <%= link_to 'Créer un événement', new_event_path, class: "btn btn-dark" %>
-  </div>
-</div>
+
 
 <div class="container-index">
-  <h2 class="text-center p-3" >🎉 Evènements à venir 🎉</h2>
+  <div class="border-top p-4">
+    <div class="d-grid gap-2 col-4 mx-auto rounded-pill link" >
+      <%= link_to 'Créer un évènement', new_event_path, class: "btn btn-dark" %>
+    </div>
+  </div>
+  
+  <h2 class="text-center p-3" >🎉 Soirée à venir 🎉</h2>
   <% if @events.any? %>
     <div class="card-container" >
       <% @events.each do |event| %>
@@ -34,7 +36,7 @@
   <% else %>
     <p>Aucun événement pour le moment.</p>
   <% end %>
+
+  <h2 class="text-center boder-bottom p-4">🎉 Soirées Souvenirs 🎉</h2>
 </div>
 
-<hr>
-<h2 class="text-center">🎉 Evènements passés 🎉</h2>
