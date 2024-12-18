@@ -13,8 +13,6 @@
   height: 325px;
   border-radius: 20px;
   background: #e8e8e8;
-  box-shadow: 5px 5px 6px #dadada,
-               -5px -5px 6px #f6f6f6;
   transition: 0.4s;
 }
 
@@ -25,8 +23,9 @@
 .card-title {
   font-size: 24px;
   font-weight: 600;
-  color: #2e54a7;
+  color: #000000;
   margin: 15px 0 0 5px;
+  text-decoration: none;
 }
 
 .card-image {
