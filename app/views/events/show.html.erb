@@ -15,6 +15,15 @@
     <% if policy(@event).duplicate? %>
       <%= link_to "Dupliquer l'événement", duplicate_index_path(@event), class: "btn btn-secondary", data: { confirm: "Êtes-vous sûr de vouloir dupliquer cet événement ?" } %>
     <% end %>
+
+    <div class="link container-album">
+      <% if @event.album.present? %>
+          <%= link_to "Voir l'Album", event_album_path(@event, @event.album), class: 'btn btn-primary' %>
+        <% else %>
+          <p>Aucun album n'a été créé pour cet évènement.</p>
+        <% end %>
+    </div>
+
   </div>
 
   <div class="item">
@@ -90,7 +99,7 @@
     data-map-marker-value="<%= @marker.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
   </div>
-  <div class="item">
+  <div class="item m-5">
     <% if @event.jackpot %>
       <h2>Cagnotte</h2>
       <p>L'organisateur se charge des courses, bande de fainéant 🦥</p>
@@ -121,15 +130,6 @@
           <% end %>
         <% end %>
     <% end %>
-  </div>
-
-  <div class="link container-album">
-    <div>
-      <h3>Album de l'évènement</h3>
-    </div>
-    <div>
-      <%= link_to "Voir l'Album", event_album_path(@event, @event.album), class: 'btn btn-primary' %>
-    </div>
   </div>
 
 </div>

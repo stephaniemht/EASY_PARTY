@@ -1,21 +1,29 @@
-<div class="container">
-  <h1>View of medias</h1>
-  <%= link_to "Ajouter des médias", edit_event_album_path(@album.event, @album), class: "btn btn-primary" %>
-</div>
-
-<div class="container">
-  <% if @album.media.attached? %>
-    <h2>Médias de <%= @event.name %></h2>
-    <ul>
-      <% @album.media.each do |media| %>
-        <li><%= image_tag media, style: "max-width: 200px; max-height: 200px;" %></li>
-      <% end %>
-    </ul>
-  <% else %>
-      <p>Aucun médias dans cet album</p>
-  <% end %>
-</div>
-
-<div class="container">
-  <%= link_to "Retour à l'évènement", event_path(@album.event), class: "btn btn-primary" %>
+<div class="container-index">
+  <div class="link container-new-header">
+    <%= link_to event_path(@event) do %>
+      <i class="fa-solid fa-circle-arrow-left"></i>
+    <% end %>
   </div>
+
+  <div class="container-album link">
+    <h1 class="text-center">Album de <%= @album.event.name %></h1>
+    <%= link_to "Ajouter des médias", edit_event_album_path(@album.event, @album), class: "btn btn-primary" %>
+  </div>
+
+  <% if @album.media.attached? %>
+    <div class="image-grid-container">
+      <ul class="image-grid">
+        <% @album.media.each do |media| %>
+          <li class="image-item">
+            <%= image_tag media %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <% else %>
+        <p>Aucun médias dans cet album</p>
+    <% end %>
+
+  <div class="container">
+  </div>
+</div>
