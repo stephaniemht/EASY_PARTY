@@ -1,29 +1,23 @@
-
-
 <div class="container-show">
-
   <%= link_to events_path do %>
       <i class="fa-solid fa-circle-arrow-left icon-show-event"></i>
   <% end %>
 
-
-
   <div class="item">
-
     <h1 class="gradient-text"><%= @event.name %></h1>
 
     <div class="show-infos">
-    <img class="img-event" src="" alt="">
-    <p class="p1">Evènement crée par :</p>
-    <p class="p2"><%= @event.user.first_name %></p>
-    <p class="p1">Lieu : </p>
-    <p class="p2"><%= @event.address %></p>
-    <p class="p1">Description : </p>
-    <p class="p2"><%= @event.description %></p>
+      <img class="img-event" src="" alt="">
+      <p class="p1">Evènement crée par :</p>
+      <p class="p2"><%= @event.user.first_name %></p>
+      <p class="p1">Lieu : </p>
+      <p class="p2"><%= @event.address %></p>
+      <p class="p1">Description : </p>
+      <p class="p2"><%= @event.description %></p>
     </div>
+  </div>
 
-
-    <div class="icon-container">
+  <div class="icon-container">
     <% if policy(@event).edit? %>
       <%= link_to edit_event_path(@event) do %>
         <i class="fa-solid fa-pen-to-square"></i>
@@ -38,19 +32,17 @@
 
     <div class="link container-album">
       <% if @event.album.present? %>
-          <%= link_to "Voir l'Album", event_album_path(@event, @event.album), class: 'btn btn-primary' %>
-        <% else %>
-          <p>Aucun album n'a été créé pour cet évènement.</p>
-        <% end %>
+        <%= link_to "Voir l'Album", event_album_path(@event, @event.album), class: 'btn btn-primary' %>
+      <% else %>
+        <p>Aucun album n'a été créé pour cet évènement.</p>
+      <% end %>
     </div>
-
   </div>
 
 
   <div class="item">
     <h2 class="gradient-text">Dates proposées</h2>
     <% if @event.event_dates.any? %>
-
       <div data-controller="calendar-show" data-calendar-show-dates-value="<%=  @calendar_dates.to_json %>">
         <% @event.event_dates.each do |event_date| %>
           <div data-calendar-show-target="eventDate" class='d-none'>    <%= l(event_date.proposed_date, format: :long) %>
@@ -76,18 +68,12 @@
       <div data-controller="calendar-show-fixed" data-calendar-show-fixed-date-value="<%= @event.date_fixed.to_json %>"></div>
 
     <% end %>
-    </div>
-
+  </div>
 
   <div class="item">
-
     <h2 class="gradient-text">Invités</h2>
-
-
       <div class="invités">
         <% @event.event_registered_users.where(status: ["En attente", "Accepté"]).each do |registration| %>
-
-
           <div class="invité">
             <%= registration.user.first_name %>
             <% if registration.user.photo.attached? %>
@@ -95,10 +81,10 @@
             <% end %>
           </div>
 
-            <% if registration.user == current_user && registration.status == "En attente" %>
-              <%= button_to "Accepter", accept_event_registered_user_path(registration), method: :patch, class: "btn btn-success" %>
-              <%= button_to "Refuser", decline_event_registered_user_path(registration), method: :patch, class: "btn btn-danger" %>
-            <% end %>
+          <% if registration.user == current_user && registration.status == "En attente" %>
+            <%= button_to "Accepter", accept_event_registered_user_path(registration), method: :patch, class: "btn btn-success" %>
+            <%= button_to "Refuser", decline_event_registered_user_path(registration), method: :patch, class: "btn btn-danger" %>
+          <% end %>
         <% end %>
       </div>
 
@@ -109,45 +95,46 @@
         </div>
         <%= f.submit "Envoyer l'invitation", class: "btn-invitation" %>
       <% end %>
-
   </div>
 
   <div class="item">
     <div style="width: 100%; height: 600px;"
-    data-controller="map"
-    data-map-marker-value="<%= @marker.to_json %>"
-    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+      data-controller="map"
+      data-map-marker-value="<%= @marker.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
   </div>
+  
   <div class="item m-5">
-  <% if @event.jackpot %>
-    <h2 class="gradient-text">Cagnotte</h2>
-    <p>L'organisateur se charge des courses, bande de fainéant 🦥</p>
-    <p><strong>Montant demandé par personne :</strong> <%= @event.jackpot.amount_per_person %> €</p>
-    <p><strong>Total attendu :</strong> <%= @event.jackpot.amount_per_person * @event.jackpot.total_invitees %> €</p>
-    <p><strong>Montant collecté :</strong> <%= @event.jackpot.total %> €</p>
-    <p><%= link_to 'Voir les participants', event_jackpot_path(@event, @event.jackpot), class: "btn btn-primary" %></p>
-
     <% if @event.jackpot %>
-      <p>
-        <%= link_to "Tu as payé ?", monney_creation_path(@event.jackpot),
-                    data: { turbo_method: :post, turbo_confirm: "Envoie la preuve ! Mito" },
-                    class: 'btn btn-primary',
-                    disabled: true %>
-      </p>
-    <% end %>
-  <% else %>
-    <h2 class="gradient-text">Votre liste de courses</h2>
-      <%= turbo_frame_tag "items_frame" do %>
-        <% if @event.items.present? %>
-          <%= render partial: "items/list", locals: { items: @event.items } %>
-        <% else %>
-          <%= turbo_frame_tag "item_form" do %>
-            <%= link_to "Ajouter un produit", new_event_item_path(@event),
-                        class: "btn btn-primary",
-                        data: { turbo_frame: "item_form" } %>
+      <h2 class="gradient-text">Cagnotte</h2>
+      <p>L'organisateur se charge des courses, bande de fainéant 🦥</p>
+      <p><strong>Montant demandé par personne :</strong> <%= @event.jackpot.amount_per_person %> €</p>
+      <p><strong>Total attendu :</strong> <%= @event.jackpot.amount_per_person * @event.jackpot.total_invitees %> €</p>
+      <p><strong>Montant collecté :</strong> <%= @event.jackpot.total %> €</p>
+      <p><%= link_to 'Voir les participants', event_jackpot_path(@event, @event.jackpot), class: "btn btn-primary" %></p>
+
+      <% if @event.jackpot %>
+        <p>
+          <%= link_to "Tu as payé ?", monney_creation_path(@event.jackpot),
+                      data: { turbo_method: :post, turbo_confirm: "Envoie la preuve ! Mito" },
+                      class: 'btn btn-primary',
+                      disabled: true %>
+        </p>
+      <% end %>
+    <% else %>
+      <h2 class="gradient-text">Votre liste de courses</h2>
+        <%= turbo_frame_tag "items_frame" do %>
+          <% if @event.items.present? %>
+            <%= render partial: "items/list", locals: { items: @event.items } %>
+          <% else %>
+            <%= turbo_frame_tag "item_form" do %>
+              <%= link_to "Ajouter un produit", new_event_item_path(@event),
+                          class: "btn btn-primary",
+                          data: { turbo_frame: "item_form" } %>
+            <% end %>
           <% end %>
         <% end %>
-
     <% end %>
   </div>
 
