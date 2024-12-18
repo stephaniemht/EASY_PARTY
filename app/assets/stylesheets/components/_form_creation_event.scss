@@ -6,10 +6,6 @@
   align-items: center;
 }
 
-// En-têtes et marges
-.date-header {
-  font-size: 20px;
-}
 
 .organization-header {
   text-align: center;
@@ -28,14 +24,31 @@
   display: flex;
   justify-content: space-around;
   gap: 2em; // Ajoute un espace entre les deux colonnes
+
 }
 
 .left-side-event,
 .right-side-event {
+  background: linear-gradient(
+    217deg,
+    rgba(255, 153, 0, 0.14),
+    rgba(255, 0, 0, 0) 70.71%
+  ),
+  linear-gradient(
+    127deg,
+    rgba(255, 0, 149, 0.12),
+    rgba(0, 255, 0, 0) 70.71%
+  ),
+  linear-gradient(
+    336deg,
+    rgba(0, 183, 255, 0.45),
+    rgba(0, 0, 255, 0) 70.71%
+  );
+
   width: 800px;
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px 10px #0c01018a;
   padding: 3em;
 }
 
@@ -43,6 +56,7 @@
 .basic-event-infos {
   display: flex;
   flex-direction: column;
+  text-align: center;
 
   .form-group {
     margin-bottom: 1.5em;
@@ -106,7 +120,7 @@
   color: white !important;
 }
 
-#eevent_ask_for_participation_je_crée_une_cagnotte + label {
+#event_ask_for_participation_je_crée_une_cagnotte + label {
   color: rgb(204, 30, 123);
   font-size: 12px;
   font-weight: bold;
@@ -119,13 +133,13 @@
   font-weight: bold;
 }
 
-#event_ask_for_participation_mes_invités_apporte_quelque_chose + label {
+#event_ask_for_participation_mes_invités_apportent_quelque_chose + label {
   color: rgb(204, 30, 123);
   font-size: 12px;
   font-weight: bold;
 }
 
-#event_ask_for_participation_mes_invités_apporte_quelque_chose:checked + label {
+#event_ask_for_participation_mes_invités_apportent_quelque_chose:checked + label {
   background-color: rgb(204, 30, 123);
   border-color: rgb(204, 30, 123);
   font-size: 12px;
@@ -137,7 +151,7 @@
   font-weight: bold;
 }
 
-// Boutons et liens
+
 .fa-circle-arrow-left {
   text-decoration: none;
   font-size: 24px;
@@ -147,7 +161,6 @@
   padding-top: 20px;
 }
 
-// Ajustement des sections dynamiques (champs conditionnels)
 #form-group-item,
 .category-wrapper-item {
   display: none;
@@ -156,6 +169,8 @@
 }
 
 .basic-event-infos .form-group input, .basic-event-infos .form-group textarea {
+  color: black;
+  background-color: #0000001a;
   width: 100%;
   padding: 0.8em;
   border: 1px solid #ccc;
@@ -164,6 +179,7 @@
   font-weight: lighter;
 }
 .organization-header {
+  padding-top: 10px;
   text-align: center;
   font-size: 16px;
   margin-top: 10px;
@@ -171,6 +187,7 @@
   font-weight: bold;
 }
 .text-center {
+  padding-bottom: 30px;
   font-size: 26px;
   text-align: center !important;
   font-weight: bold;
@@ -182,10 +199,12 @@
 }
 
 .flatpickr-day.today {
+  border-radius: 50%;
   border-color: rgb(204, 30, 123);
 }
 
 .flatpickr-day.selected {
+  border-radius: 50%;
   background: rgb(204, 30, 123);
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -193,33 +212,76 @@
   border-color: rgb(204, 30, 123);
 }
 
-.flatpickr-day {
-  background: none;
-  border: 1px solid transparent;
-  border-radius: 150px;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  color: #393939;
-  cursor: pointer;
-  font-weight: 400;
-  width: 14.2857143%;
-  -webkit-flex-basis: 14.2857143%;
-  -ms-flex-preferred-size: 14.2857143%;
-  flex-basis: 14.2857143%;
-  max-width: 39px;
-  height: 39px;
-  line-height: 39px;
-  margin: 0;
-  display: inline-block;
-  position: relative;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  text-align: center;
-}
 .date-header{
+  padding: 10px;
   text-align: center;
   font-size: 16px;
   font-weight: bold;
+}
+.cdate {
+  box-shadow: 0 4px 10px 10px #0c01018a;
+  border-radius: 10px;
+}
+
+.container-new-header{
+  display: flex;
+  justify-content: left;
+}
+
+.container-global {
+  background: linear-gradient(217deg, rgb(255, 153, 0), rgba(255,0,0,0) 70.71%),
+  linear-gradient(127deg, rgb(255, 0, 149), rgba(0,255,0,0) 70.71%),
+  linear-gradient(336deg, rgba(0, 183, 255, 0.8), rgba(0,0,255,0) 70.71%);
+}
+
+.flatpickr-calendar {
+  border: none;
+  background: linear-gradient(
+    217deg,
+    rgba(255, 153, 0, 0.14),
+    rgba(255, 0, 0, 0) 70.71%
+  ),
+  linear-gradient(
+    127deg,
+    rgba(255, 0, 149, 0.12),
+    rgba(0, 255, 0, 0) 70.71%
+  ),
+  linear-gradient(
+    336deg,
+    rgba(0, 183, 255, 0.45),
+    rgba(0, 0, 255, 0) 70.71%
+  );
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.flatpickr-days {
+  background: transparent;
+  box-shadow: none;
+}
+
+.flatpickr-month {
+  border-radius: 50%;
+  background: transparent;
+}
+
+.flatpickr-day {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 50%;
+}
+
+.flatpickr-day:hover {
+  background: rgba(255, 255, 255, 0.5);
+  color: black;
+}
+.flatpickr-innerContainer,
+.flatpickr-months,
+.flatpickr-days {
+  background: transparent;
+  box-shadow: none;
+}
+
+input.form-control {
+ background: #0000001a;
 }

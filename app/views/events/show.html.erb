@@ -1,6 +1,7 @@
 
 
 <div class="container-show">
+
   <%= link_to events_path do %>
       <i class="fa-solid fa-circle-arrow-left icon-show-event"></i>
   <% end %>
@@ -21,6 +22,7 @@
     <p class="p2"><%= @event.description %></p>
     </div>
 
+
     <div class="icon-container">
     <% if policy(@event).edit? %>
       <%= link_to edit_event_path(@event) do %>
@@ -34,7 +36,7 @@
       <% end %>
     <% end %>
     </div>
-  </div>
+</div>
 
   <div class="item">
     <h2 class="gradient-text">Dates proposées</h2>
@@ -47,10 +49,6 @@
               <img src="https://www.shutterstock.com/image-vector/default-avatar-profile-icon-vector-600nw-1725655669.jpg" alt="avatar-par-défaut" class="avatar-invité" >
             </a>
           <% end %>
-        <% if registration.user == current_user && registration.status == "En attente" %>
-          <%= button_to "Accepter", accept_event_registered_user_path(registration), method: :patch, class: "btn btn-success" %>
-          <%= button_to "Refuser", decline_event_registered_user_path(registration), method: :patch, class: "btn btn-danger" %>
-        <% end %>
     <% end %>
 
       <div data-controller="calendar-show" data-calendar-show-dates-value="<%=  @calendar_dates.to_json %>">
@@ -114,14 +112,13 @@
 
   </div>
 
-
-
   <div class="item">
     <div style="width: 100%; height: 600px;"
     data-controller="map"
     data-map-marker-value="<%= @marker.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
   </div>
+
  <div class="item">
   <% if @event.jackpot %>
     <h2 class="gradient-text">Cagnotte</h2>

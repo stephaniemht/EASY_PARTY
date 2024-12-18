@@ -9,39 +9,71 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log(this.eventDateTargets);
-    console.log("coucou")
-
     flatpickr(this.element, {
       inline: true,
       defaultDate: this.datesValue,
-      onChange: (event) => {
-        document.querySelectorAll(".flatpickr-day.selected").forEach((dayElem) => {
-          const dayDate = dayElem.dateObj.toISOString().split("T")[0];
-          dayElem.setAttribute("data-calendar-show-target", this.datesValue);
-          dayElem.innerHTML = `<span>${dayElem.innerHTML}</span>`;
-          this.setEventListener(dayElem)
-        });
+      mode: "multiple",
+      onReady: () => {
+        this.updateDateStyles();
       },
+      onChange: () => {
+        this.updateDateStyles();
+      },
+    });
+  }
+
+
+  updateDateStyles() {
+    const allDates = document.querySelectorAll(".flatpickr-day");
+
+    const formattedDatesValue = this.datesValue.map((date) => {
+      const dateObject = new Date(date.split("T")[0]);
+      const options = { month: 'long', day: '2-digit' };
+      // 02 10 21
+      // 2
+      const formattedDate = new Intl.DateTimeFormat('en-EN', options).format(dateObject);
+      return formattedDate;
+    });
+
+
+    allDates.forEach((dayElem, event) => {
+      const dayDate = dayElem.ariaLabel.split(",")[0];
+      const [month, day] = dayDate.split(' ');
+      const formattedDay = day.length === 1 ? '0' + day : day;
+      const formattedDate = `${month} ${formattedDay}`;
+
+      if (formattedDatesValue.includes(formattedDate)) {
+        dayElem.classList.add("custom-non-selected");
+      } else {
+        dayElem.classList.remove("custom-selected");
+      }
+      this.setEventListener(dayElem);
     });
   }
 
   setEventListener(dayElem) {
     dayElem.addEventListener("click", (event) => {
-     const clickedDates = dayElem.ariaLabel.split(',')[0]
+      const clickedDate = dayElem.ariaLabel.split(',')[0];
+      const [clickedMonth, clickedDay] = clickedDate.split(' ');
+
+      const formattedClickedDay = clickedDay.length === 1 ? '0' + clickedDay : clickedDay;
+      const formattedClickedDate = `${clickedMonth} ${formattedClickedDay}`;
+
       this.eventDateTargets.forEach(targetedDate => {
-        if (targetedDate.innerText.split(',')[0].trim() == clickedDates ) {
-          console.log("quelle histoire");
-          targetedDate.classList.remove('d-none')
+
+        const targetedDateText = targetedDate.innerText.split(',')[0].trim();
+        const [targetedMonth, targetedDay] = targetedDateText.split(' ');
+
+        const formattedTargetedDay = targetedDay.length === 1 ? '0' + targetedDay : targetedDay;
+        const formattedTargetedDate = `${targetedMonth} ${formattedTargetedDay}`;
+
+        if (formattedTargetedDate === formattedClickedDate) {
+          targetedDate.classList.remove('d-none');
         } else {
-          targetedDate.classList.add('d-none')
+          targetedDate.classList.add('d-none');
         }
-      })
-    })
+      });
+    });
   }
 
-  compare(event) {
-    console.log("coucou")
-    console.log(event.currentTarget)
-  }
 }
