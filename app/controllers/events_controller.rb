@@ -38,7 +38,6 @@ class EventsController < ApplicationController
           EventDate.create!(proposed_date: proposed_date, event_id: @event.id, user_id: current_user.id)
         end
       end
-      raise
       if params[:event][:ask_for_participation] == 'Mes invités apportent quelque chose'
         Item.create!(content: params[:item][:content], user_id: current_user.id, event_id: @event.id)
       end
