@@ -7,6 +7,12 @@
   display: grid;
 
 }
+.container-album {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
 .container-show {
   margin: 0;
@@ -43,6 +49,7 @@
   background-color: purple !important;
   color: white;
   border-radius: 5px;
+
 }
 
 
@@ -56,3 +63,16 @@
 //   linear-gradient(127deg, rgb(255, 0, 149), rgba(0,255,0,0) 70.71%),
 //   linear-gradient(336deg, rgba(0, 183, 255, 0.8), rgba(0,0,255,0) 70.71%);
 // }
+
+
+.flatpickr-day.custom-non-selected {
+  background-color: #fa01e1 !important;
+  border: 1px solid #333!important;
+  color: white !important;
+  border-radius: 50%;
+}
+
+.flatpickr-day {
+  background-color: #f1f1f1 !important;
+  color: black !important;
+}
