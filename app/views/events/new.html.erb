@@ -1,10 +1,12 @@
+
+<div class="container-global">
+<div class="link container-new-header">
   <%= link_to events_path do %>
     <i class="fa-solid fa-circle-arrow-left"></i>
  <% end %>
+ </div>
   <%= simple_form_for @event, local: true do |form| %>
 <div class="event-new-wrapper">
-
-
 <div class="left-side-event">  <%# Section pour les informations générales de l'événement %>
   <div class="basic-event-infos">
     <div class="form-group">
@@ -77,6 +79,7 @@
   <%# Boutons d'action %>
 
   <div class="btn-cetr">
-    <%= form.submit "Créer l'événement", class:"btn btn-primary" %>
+    <%= form.submit "Créer l'événement", class:"bouton-new" %>
   </div>
 <% end %>
+</div>
