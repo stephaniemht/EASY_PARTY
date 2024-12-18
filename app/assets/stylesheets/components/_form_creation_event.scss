@@ -133,13 +133,13 @@
   font-weight: bold;
 }
 
-#event_ask_for_participation_mes_invités_apporte_quelque_chose + label {
+#event_ask_for_participation_mes_invités_apportent_quelque_chose + label {
   color: rgb(204, 30, 123);
   font-size: 12px;
   font-weight: bold;
 }
 
-#event_ask_for_participation_mes_invités_apporte_quelque_chose:checked + label {
+#event_ask_for_participation_mes_invités_apportent_quelque_chose:checked + label {
   background-color: rgb(204, 30, 123);
   border-color: rgb(204, 30, 123);
   font-size: 12px;
@@ -159,7 +159,6 @@
   display: flex;
   justify-content: left;
   padding-top: 20px;
-  padding-left: 28px;
 }
 
 #form-group-item,
@@ -170,6 +169,7 @@
 }
 
 .basic-event-infos .form-group input, .basic-event-infos .form-group textarea {
+  color: black;
   background-color: #0000001a;
   width: 100%;
   padding: 0.8em;
@@ -199,10 +199,12 @@
 }
 
 .flatpickr-day.today {
+  border-radius: 50%;
   border-color: rgb(204, 30, 123);
 }
 
 .flatpickr-day.selected {
+  border-radius: 50%;
   background: rgb(204, 30, 123);
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -233,47 +235,53 @@
 }
 
 .flatpickr-calendar {
+  border: none;
   background: linear-gradient(
     217deg,
-    rgba(255, 153, 0, 0.5),
+    rgba(255, 153, 0, 0.14),
     rgba(255, 0, 0, 0) 70.71%
   ),
   linear-gradient(
     127deg,
-    rgba(255, 0, 149, 0.5),
+    rgba(255, 0, 149, 0.12),
     rgba(0, 255, 0, 0) 70.71%
   ),
   linear-gradient(
     336deg,
-    rgba(0, 183, 255, 0.5),
+    rgba(0, 183, 255, 0.45),
     rgba(0, 0, 255, 0) 70.71%
   );
-  border-radius: 8px; /* Coins arrondis pour le style */
-  padding: 10px; /* Pour éviter que les éléments internes touchent les bords */
+  border-radius: 8px;
+  padding: 10px;
 }
 
 .flatpickr-days {
-  background: transparent; /* Permet au fond multicolore d'être visible */
-  box-shadow: none; /* Supprime toute ombre gênante */
+  background: transparent;
+  box-shadow: none;
 }
 
 .flatpickr-month {
-  background: transparent; /* Supprime le fond blanc */
+  border-radius: 50%;
+  background: transparent;
 }
 
 .flatpickr-day {
-  background: rgba(255, 255, 255, 0.2); /* Optionnel : Fond léger pour les jours */
-  color: #fff; /* Contraste avec un fond multicolore */
-  border-radius: 4px; /* Coins arrondis pour les jours */
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 50%;
 }
 
 .flatpickr-day:hover {
-  background: rgba(255, 255, 255, 0.5); /* Couleur au survol */
-  color: black; /* Contraste amélioré */
+  background: rgba(255, 255, 255, 0.5);
+  color: black;
 }
 .flatpickr-innerContainer,
 .flatpickr-months,
 .flatpickr-days {
   background: transparent;
   box-shadow: none;
+}
+
+input.form-control {
+ background: #0000001a;
 }
