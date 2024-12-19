@@ -79,12 +79,27 @@
   margin: 20px auto;
   border-radius: 10px;
   box-shadow: 0 4px 10px 10px #0c01018a;
-  background-color: #e7dfdf;
   border: 1px solid #ccc;
   padding: 20px;
   text-align: center;
   box-sizing: border-box;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: linear-gradient(
+    217deg,
+    rgba(255, 153, 0, 0.14),
+    rgba(255, 0, 0, 0) 70.71%
+  ),
+  linear-gradient(
+    127deg,
+    rgba(255, 0, 149, 0.12),
+    rgba(0, 255, 0, 0) 70.71%
+  ),
+  linear-gradient(
+    336deg,
+    rgba(0, 183, 255, 0.45),
+    rgba(0, 0, 255, 0) 70.71%
+  );
+  background-color: #fff;
 }
 
 .item:hover {
@@ -176,7 +191,7 @@
 
 .item:nth-child(4), .item:nth-child(5) {
   width: 40%;
-  margin-left: 100px;
+  margin-left: 79px;
 }
 
 .item:nth-child(6), .item:nth-child(7) {

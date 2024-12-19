@@ -25,21 +25,21 @@
       <p class="p1">Description : </p>
       <p class="p2"><%= @event.description %></p>
     </div>
+      <div class="icon-container">
+        <% if policy(@event).edit? %>
+          <%= link_to edit_event_path(@event) do %>
+            <i class="fa-solid fa-pen-to-square"></i>
+          <% end %>
+        <% end %>
+
+        <% if policy(@event).destroy? %>
+          <%= link_to event_path(@event), data: { turbo_method: :delete, turbo_confirm: 'Etes vous sûr ?' } do %>
+            <i class="fa-sharp fa-solid fa-trash-can"></i>
+          <% end %>
+        <% end %>
+      </div>
   </div>
 
-  <div class="icon-container">
-    <% if policy(@event).edit? %>
-      <%= link_to edit_event_path(@event) do %>
-        <i class="fa-solid fa-pen-to-square"></i>
-      <% end %>
-    <% end %>
-
-    <% if policy(@event).destroy? %>
-      <%= link_to event_path(@event), data: { turbo_method: :delete, turbo_confirm: 'Etes vous sûr ?' } do %>
-        <i class="fa-sharp fa-solid fa-trash-can"></i>
-      <% end %>
-    <% end %>    
-  </div>
 
 
   <div class="item">
@@ -106,7 +106,7 @@
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
   </div>
-  
+
   <div class="item m-5">
     <% if @event.jackpot %>
       <h2 class="gradient-text">Cagnotte</h2>
