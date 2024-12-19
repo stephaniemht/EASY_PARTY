@@ -10,7 +10,7 @@
       <%= link_to 'Créer un évènement', new_event_path, class: "btn-invitation" %>
     </div>
   </div>
-  
+
   <h2 class="text-center p-3" >🎉 Soirées à venir 🎉</h2>
   <% if @events.any? %>
     <div class="card-container" >
@@ -18,8 +18,8 @@
        <%= link_to event_path(event) do %>
           <div class="card">
             <div class="card-image">
-              <% if event.image&.attached? %>
-                <%= cl_image_tag event.imag.key, class: "card-image" %>
+              <% if event.photo.attached? %>
+                <%= cl_image_tag event.photo.key, class: "card-image" %>
               <% else %>
                   <img src="https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="avatar-par-défaut" class="card-image" >
               <% end %>
@@ -39,4 +39,3 @@
 
   <h2 class="text-center boder-bottom p-4">🎉 Soirées Souvenirs 🎉</h2>
 </div>
-

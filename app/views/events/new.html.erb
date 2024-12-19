@@ -20,11 +20,14 @@
       <div class="form-group">
         <%= form.input :description, input_html: {class: "description_input"} %>
       </div>
+
+
+      <div class="form-group">
+          <%= form.input :photo, as: :file, input_html: { class: "form-control" } %>
+        </div>
+
     </div>
-
-
     <h2 class="organization-header">Comment organisez vous votre événement ?</h2>
-
 
     <div class="choice-jackpot-item" data-controller= "form-toggle">
       <div class="jackpot-form">

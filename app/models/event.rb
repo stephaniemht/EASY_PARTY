@@ -8,10 +8,9 @@ class Event < ApplicationRecord
   has_many :event_dates, dependent: :destroy
   has_one :album, dependent: :destroy
   accepts_nested_attributes_for :event_dates, allow_destroy: true
-  has_one_attached :image
+  has_one_attached :photo
 
-  #attr_accessor :event_option, :item_content
   has_many :invited_users, through: :event_registered_users, source: :user
 
-  # validates :name, :address, presence: true
+  validates :name, :address, :description, presence: true
 end
