@@ -274,6 +274,13 @@ color: rgba(0, 183, 255, 0.8);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.date-proposal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
 // .flatpickr-day.custom-non-selected {
 //   background-color: #fa01e1 !important;
 //   border: 1px solid #333!important;
