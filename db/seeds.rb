@@ -14,8 +14,6 @@ EventRegisteredUser.destroy_all
 Event.destroy_all
 User.destroy_all
 
-
-
 User.create!(email: "belin.nicolas89@gmail.com", password: "azerty", first_name: "Nicolas", last_name: "Belin", phone_number: "+33603757432")
 file1 = URI.parse("https://avatars.githubusercontent.com/u/168406452?v=4").open
 user1 = User.all[0].photo.attach(io: file1, filename: "user-1", content_type: "image/png")
