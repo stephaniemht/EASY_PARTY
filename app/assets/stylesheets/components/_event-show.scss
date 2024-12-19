@@ -185,17 +185,17 @@
 
 
 
-.item:nth-child(2), .item:nth-child(3) {
+.item:nth-child(1), .item:nth-child(2) {
   margin-top: 75px;
   width: 40%;
 }
 
-.item:nth-child(4), .item:nth-child(5) {
+.item:nth-child(3), .item:nth-child(4) {
   width: 40%;
-  margin-left: 79px;
+ 
 }
 
-.item:nth-child(6), .item:nth-child(7) {
+.item:nth-child(5) {
   width: 84%;
 }
 
