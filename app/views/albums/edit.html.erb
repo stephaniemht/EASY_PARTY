@@ -1,11 +1,29 @@
-<h1>Ajouter des médias à l'album pour <%= @event.name %></h1>
+<div class="icon-album-edit">
+  <%= link_to events_path do %>
+    <i class="fa-solid fa-circle-arrow-left"></i>
+ <% end %>
+ </div>
 
-<%= form_with model: @album, url: event_album_path(@event), method: :patch, local: true do |form| %>
-  <div>
-    <%= form.label :media, "Ajouter des médias (URLs séparées par des virgules)" %>
-    <%= form.file_field :media, multiple: true, class: "form-control" %>
+<div class="container-album-edit">
+
+  <div class="card-album-edit">
+
+    <div class="h1-album-edit">
+      <h1>Ajouter des medias <%= @event.name %></h1>
+    </div>
+
+  <%= form_with model: @album, url: event_album_path(@event), method: :patch, local: true do |form| %>
+
+    <div class="input-album-edit">
+    <div>
+      <%= form.label :media %>
+      <%= form.file_field :media, multiple: true, class: "form-control" %>
+    </div>
+    <div>
+      <%= form.submit "Ajouter", class: "btn-album-edit" %>
+    </div>
+  <% end %>
+    </div>
   </div>
-  <div>
-    <%= form.submit "Ajouter des médias", class: "btn btn-primary" %>
-  </div>
-<% end %>
+
+</div>
