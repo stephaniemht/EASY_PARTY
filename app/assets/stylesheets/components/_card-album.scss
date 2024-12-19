@@ -48,7 +48,8 @@
 
 .container-album-show {
   min-height: 53vh;
-  display: flex;
+  display: grid;
+  grid: column;
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
