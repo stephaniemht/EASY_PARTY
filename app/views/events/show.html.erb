@@ -132,7 +132,7 @@
           <% else %>
             <%= turbo_frame_tag "item_form" do %>
               <%= link_to "Ajouter un produit", new_event_item_path(@event),
-                          class: "btn-invitation",
+                          class: "btn-list-course",
                           data: { turbo_frame: "item_form" } %>
             <% end %>
           <% end %>
