@@ -68,12 +68,10 @@
   linear-gradient(336deg, rgba(0, 183, 255, 0.8), rgba(0,0,255,0) 70.71%);
 }
 
-
 .icon-show-event {
   position: absolute;
   left: 10px;
 }
-
 
 .item {
   position: relative;
@@ -182,9 +180,6 @@
   transform: scale(1.2);
 }
 
-
-
-
 .item:nth-child(1), .item:nth-child(2) {
   margin-top: 75px;
   width: 40%;
@@ -211,7 +206,6 @@
   color: #333;
   border-radius: 5px;
 }
-
 
 .gradient-text {
   background: linear-gradient(217deg, rgb(255, 153, 0), rgba(255,0,0,0) 70.71%),
