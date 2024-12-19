@@ -1,11 +1,11 @@
-<div class="container-index">
-  <div class="link container-new-header">
-    <%= link_to event_path(@event) do %>
-      <i class="fa-solid fa-circle-arrow-left"></i>
+<div class="container-album-show">
+  <div>
+     <%= link_to event_path(@event) do %>
+      <i class="fa-solid fa-circle-arrow-left icon-show-event"></i>
     <% end %>
   </div>
 
-  <div class="container-album link">
+  <div class="container-album link m-3">
     <h1 class="text-center">Album de <%= @album.event.name %></h1>
     <%= link_to "Ajouter des médias", edit_event_album_path(@album.event, @album), class: "btn-invitation" %>
   </div>
@@ -20,8 +20,7 @@
         <% end %>
       </ul>
     </div>
-    <% else %>
-        <p>Aucun médias dans cet album</p>
-    <% end %>
-    
+  <% else %>
+    <p>Aucun médias dans cet album</p>
+  <% end %>
 </div>
