@@ -1,15 +1,8 @@
-<div class="index-header">
-  <h1>F I E S T A</h1>
-</div>
-
-
-
-<div class="container-index">
-  <div class="border-top p-4">
-    <div class="d-grid gap-2 col-4 mx-auto rounded-pill link" >
-      <%= link_to 'Créer un évènement', new_event_path, class: "btn-invitation" %>
-    </div>
+<div class="container-index pb-4">
+  <div class="d-grid gap-2 col-4 mx-auto rounded-pill link p-4" >
+    <%= link_to 'Créer un évènement', new_event_path, class: "btn-invitation" %>
   </div>
+
   
   <h2 class="text-center p-3" >🎉 Soirées à venir 🎉</h2>
   <% if @events.any? %>
@@ -36,7 +29,5 @@
   <% else %>
     <p>Aucun événement pour le moment.</p>
   <% end %>
-
-  <h2 class="text-center boder-bottom p-4">🎉 Soirées Souvenirs 🎉</h2>
 </div>
 
