@@ -114,7 +114,7 @@
       <p><strong>Montant demandé par personne :</strong> <%= @event.jackpot.amount_per_person %> €</p>
       <p><strong>Total attendu :</strong> <%= @event.jackpot.amount_per_person * @event.jackpot.total_invitees %> €</p>
       <p><strong>Montant collecté :</strong> <%= @event.jackpot.total %> €</p>
-      <p><%= link_to 'Voir les participants', event_jackpot_path(@event, @event.jackpot), class: "btn btn-primary" %></p>
+      <p><%= link_to 'Voir les participants', event_jackpot_path(@event, @event.jackpot), class: "btn-invitation" %></p>
 
       <% if @event.jackpot %>
         <p>
@@ -132,7 +132,7 @@
           <% else %>
             <%= turbo_frame_tag "item_form" do %>
               <%= link_to "Ajouter un produit", new_event_item_path(@event),
-                          class: "btn btn-primary",
+                          class: "btn-invitation",
                           data: { turbo_frame: "item_form" } %>
             <% end %>
           <% end %>
