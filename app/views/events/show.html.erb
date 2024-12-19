@@ -111,15 +111,13 @@
       <h2 class="gradient-text">Cagnotte</h2>
       <p>L'organisateur se charge des courses, bande de fainéant 🦥</p>
       <p><strong>Montant demandé par personne :</strong> <%= @event.jackpot.amount_per_person %> €</p>
-      <p><strong>Total attendu :</strong> <%= @event.jackpot.amount_per_person * @event.jackpot.total_invitees %> €</p>
       <p><strong>Montant collecté :</strong> <%= @event.jackpot.total %> €</p>
-      <p><%= link_to 'Voir les participants', event_jackpot_path(@event, @event.jackpot), class: "btn-invitation" %></p>
 
       <% if @event.jackpot %>
         <p>
           <%= link_to "Tu as payé ?", monney_creation_path(@event.jackpot),
                       data: { turbo_method: :post, turbo_confirm: "Envoie la preuve ! Mito" },
-                      class: 'btn-invitation',
+                      class: 'btn-paye',
                       disabled: true %>
         </p>
       <% end %>

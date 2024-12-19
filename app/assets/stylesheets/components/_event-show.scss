@@ -285,6 +285,33 @@ color: rgba(0, 183, 255, 0.8);
   padding: 20px;
 }
 
+.btn-paye {
+  background-color: rgba(0, 183, 255, 0.8);
+  border: none;
+  border-radius: 10px;
+  padding-right: 25px;
+  padding-left: 25px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-paye:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.2);
+  text-decoration: none;
+}
+
+.btn-paye:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 // .flatpickr-day.custom-non-selected {
 //   background-color: #fa01e1 !important;
 //   border: 1px solid #333!important;
