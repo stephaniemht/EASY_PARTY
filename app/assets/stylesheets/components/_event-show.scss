@@ -192,7 +192,7 @@
 
 .item:nth-child(3), .item:nth-child(4) {
   width: 40%;
- 
+
 }
 
 .item:nth-child(5) {
@@ -312,6 +312,16 @@ color: rgba(0, 183, 255, 0.8);
   transform: translateY(0);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+.flatpickr-calendar.inline {
+  width: 328px;
+}
+
+
+
+
+
+
 // .flatpickr-day.custom-non-selected {
 //   background-color: #fa01e1 !important;
 //   border: 1px solid #333!important;
