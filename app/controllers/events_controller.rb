@@ -107,7 +107,8 @@ class EventsController < ApplicationController
       :description,
       :ask_for_participation,
       :album_id,
-      :date_fixed
+      :date_fixed,
+      :photo
     )
   end
 end

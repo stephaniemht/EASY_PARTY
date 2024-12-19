@@ -13,5 +13,5 @@ class User < ApplicationRecord
   has_one_attached :photo
   has_many :invited_events, through: :event_registered_users, source: :event
 
-  # validates :first_name, :last_name, :phone_number, presence: true
+  validates :first_name, :last_name, :phone_number, :email, presence: true
 end
