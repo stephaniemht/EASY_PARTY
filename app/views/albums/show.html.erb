@@ -7,7 +7,7 @@
 
   <div class="container-album link">
     <h1 class="text-center">Album de <%= @album.event.name %></h1>
-    <%= link_to "Ajouter des médias", edit_event_album_path(@album.event, @album), class: "btn btn-primary" %>
+    <%= link_to "Ajouter des médias", edit_event_album_path(@album.event, @album), class: "btn-invitation" %>
   </div>
 
   <% if @album.media.attached? %>
@@ -23,7 +23,5 @@
     <% else %>
         <p>Aucun médias dans cet album</p>
     <% end %>
-
-  <div class="container">
-  </div>
+    
 </div>
