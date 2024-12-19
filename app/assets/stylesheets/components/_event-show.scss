@@ -49,6 +49,7 @@
   transform: translateY(0);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 .container-album {
   display: flex;
   flex-direction: column;
@@ -261,17 +262,27 @@ color: rgba(0, 183, 255, 0.8);
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  display: inline-block;
 }
 
 .btn-list-course:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
   transform: scale(1.2);
+  text-decoration: none;
 }
 
 .btn-list-course:active {
   transform: translateY(0);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.date-proposal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
 
 // .flatpickr-day.custom-non-selected {

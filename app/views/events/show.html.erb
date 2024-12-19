@@ -42,7 +42,7 @@
 
 
 
-  <div class="item">
+  <div class="item date-proposal-container">
     <h2 class="gradient-text">Dates proposées</h2>
     <% if @event.event_dates.any? %>
       <div data-controller="calendar-show" data-calendar-show-dates-value="<%=  @calendar_dates.to_json %>">
@@ -68,7 +68,6 @@
       </div>
     <% else %>
       <div data-controller="calendar-show-fixed" data-calendar-show-fixed-date-value="<%= @event.date_fixed.to_json %>"></div>
-
     <% end %>
   </div>
 
@@ -120,7 +119,7 @@
         <p>
           <%= link_to "Tu as payé ?", monney_creation_path(@event.jackpot),
                       data: { turbo_method: :post, turbo_confirm: "Envoie la preuve ! Mito" },
-                      class: 'btn btn-primary',
+                      class: 'btn-invitation',
                       disabled: true %>
         </p>
       <% end %>

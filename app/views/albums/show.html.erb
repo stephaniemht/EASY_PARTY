@@ -10,17 +10,17 @@
     <%= link_to "Ajouter des médias", edit_event_album_path(@album.event, @album), class: "btn-invitation" %>
   </div>
 
-  <% if @album.media.attached? %>
-    <div class="image-grid-container">
-      <ul class="image-grid">
-        <% @album.media.each do |media| %>
-          <li class="image-item">
-            <%= image_tag media %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  <% else %>
-    <p>Aucun médias dans cet album</p>
-  <% end %>
+  <div>
+    <% if @album.media.attached? %>
+      <div class="image-grid-container">
+        <ul class="image-grid">
+          <% @album.media.each do |media| %>
+            <li class="image-item">
+              <%= image_tag media %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
 </div>
