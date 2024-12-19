@@ -78,7 +78,7 @@
   position: relative;
   margin: 20px auto;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px 10px #0c01018a;
   background-color: #e7dfdf;
   border: 1px solid #ccc;
   padding: 20px;
@@ -109,6 +109,26 @@
   font-weight: bold;
 }
 
+.album-container {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.album-container i{
+  font-size: 30px;
+  color: #555;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.album-container .fa-image:hover {
+  color: #0400ff;
+  transform: scale(1.2);
+}
+
 .item .p1 {
   font-size: 28px;
   color: #000000;
@@ -117,7 +137,7 @@
 
 .item .p2 {
   font-size: 20px;
-  color: #f50290a4;
+  color: rgba(0, 183, 255, 0.8);
   font-weight: bold;
 }
 
@@ -130,7 +150,7 @@
 }
 
 .icon-container i {
-  font-size: 1.2rem;
+  font-size: 30px;
   color: #555;
   cursor: pointer;
   transition: color 0.3s ease, transform 0.2s ease;
@@ -206,7 +226,7 @@
 .table-group-divider td {
 font-size: 16px;
 font-weight: bold;
-color: #f50290a4;
+color: rgba(0, 183, 255, 0.8);
 }
 
 .flex-grow-1 {

@@ -6,6 +6,16 @@
   <div class="item">
     <h1 class="gradient-text"><%= @event.name %></h1>
 
+    <div class="album-container">
+    <% if @event.album.present? %>
+      <%= link_to event_album_path(@event, @event.album) do %>
+        <i class="fa-solid fa-image"></i>
+      <% end %>
+    <% else %>
+      <p>Aucun album n'a été créé pour cet évènement.</p>
+    <% end %>
+    </div>
+
     <div class="show-infos">
       <img class="img-event" src="" alt="">
       <p class="p1">Evènement crée par :</p>
@@ -28,15 +38,7 @@
       <%= link_to event_path(@event), data: { turbo_method: :delete, turbo_confirm: 'Etes vous sûr ?' } do %>
         <i class="fa-sharp fa-solid fa-trash-can"></i>
       <% end %>
-    <% end %>
-
-    <div class="link container-album">
-      <% if @event.album.present? %>
-        <%= link_to "Voir l'Album", event_album_path(@event, @event.album), class: 'btn btn-primary' %>
-      <% else %>
-        <p>Aucun album n'a été créé pour cet évènement.</p>
-      <% end %>
-    </div>
+    <% end %>    
   </div>
 
 
@@ -137,5 +139,4 @@
         <% end %>
     <% end %>
   </div>
-
 </div>
