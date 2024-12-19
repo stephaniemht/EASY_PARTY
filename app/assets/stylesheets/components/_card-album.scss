@@ -39,3 +39,14 @@
   justify-content: center;
   align-items: center;
 }
+
+.container-album-show {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  background: linear-gradient(217deg, rgb(255, 153, 0), rgba(255,0,0,0) 70.71%),
+  linear-gradient(127deg, rgb(255, 0, 149), rgba(0,255,0,0) 70.71%),
+  linear-gradient(336deg, rgba(0, 183, 255, 0.8), rgba(0,0,255,0) 70.71%);
+}
