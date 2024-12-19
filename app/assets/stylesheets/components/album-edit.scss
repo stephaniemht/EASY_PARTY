@@ -1,0 +1,89 @@
+.container-album-edit {
+  height: 600px;
+  background: linear-gradient(217deg, rgb(255, 153, 0), rgba(255,0,0,0) 70.71%),
+  linear-gradient(127deg, rgb(255, 0, 149), rgba(0,255,0,0) 70.71%),
+  linear-gradient(336deg, rgba(0, 183, 255, 0.8), rgba(0,0,255,0) 70.71%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-album-edit {
+  width: 80%;
+  height: 400px;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px 10px #0c01018a;
+  border: 1px solid #ccc;
+  text-align: center;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: linear-gradient(
+    217deg,
+    rgba(255, 153, 0, 0.14),
+    rgba(255, 0, 0, 0) 70.71%
+  ),
+  linear-gradient(
+    127deg,
+    rgba(255, 0, 149, 0.12),
+    rgba(0, 255, 0, 0) 70.71%
+  ),
+  linear-gradient(
+    336deg,
+    rgba(0, 183, 255, 0.45),
+    rgba(0, 0, 255, 0) 70.71%
+  );
+  background-color: #fff;
+}
+
+.card-album-edit:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.h1-album-edit h1 {
+  padding-top: 30px;
+  font-weight: bold;
+  background: linear-gradient(217deg, rgb(255, 153, 0), rgba(255,0,0,0) 70.71%),
+  linear-gradient(127deg, rgb(255, 0, 149), rgba(0,255,0,0) 70.71%),
+  linear-gradient(336deg, rgba(0, 183, 255, 0.8), rgba(0,0,255,0) 70.71%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.input-album-edit {
+  padding-top: 100px;
+  width: 80%;
+  margin: auto;
+}
+
+.btn-album-edit {
+  background-color: rgba(0, 183, 255, 0.8);
+  border: none;
+  border-radius: 10px;
+  padding-right: 25px;
+  padding-left: 25px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-album-edit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.2);
+}
+
+.btn-album-edit:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.icon-album-edit i {
+  position: absolute;
+  left: 20px;
+}
