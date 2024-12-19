@@ -12,6 +12,16 @@
 
     <h1 class="gradient-text"><%= @event.name %></h1>
 
+    <div class="album-container">
+    <% if @event.album.present? %>
+      <%= link_to event_album_path(@event, @event.album) do %>
+        <i class="fa-solid fa-image"></i>
+      <% end %>
+    <% else %>
+      <p>Aucun album n'a été créé pour cet évènement.</p>
+    <% end %>
+    </div>
+
     <div class="show-infos">
     <img class="img-event" src="" alt="">
     <p class="p1">Evènement crée par :</p>
@@ -35,6 +45,7 @@
         <i class="fa-sharp fa-solid fa-trash-can"></i>
       <% end %>
     <% end %>
+
     </div>
 </div>
 
@@ -143,11 +154,5 @@
   <% end %>
  </div>
 
-<div class="item">
-  <% if @event.album.present? %>
-    <h2>Album de l'évènement</h2>
-    <%= link_to "Voir l'Album", event_album_path(@event, @event.album), class: 'btn btn-primary' %>
-  <% else %>
-    <p>Aucun album n'a été créé pour cet évènement.</p>
-  <% end %>
+
 </div>
